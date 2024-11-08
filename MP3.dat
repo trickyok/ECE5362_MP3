@@ -1,0 +1,198 @@
+***************************
+**       ECE 5362       ***
+**** Machine Problem 3 ****
+**** Emmanuel Karikari & Gage Farmer ****
+***************************
+*** Start fetch cycle ***
+ st=0 rt='[pc]-> mar'       imar rac=1 rn=3
+ st=1 rt='[[mar]]-> mdr'    read
+ st=2 rt='[mdr] -> ir'	    omdr iir
+ st=3 rt='[pc]+1 -> q'	    rac=1 rn=3 ib p1 oadder
+ st=4 rt='[q] -> pc'	    oq wac=1 wn=3 
+	cond='ir1512'       value=4 nst=30
+	cond='ir1512'	    value=0 nst=70	    
+	nst=10
+
+*** If any instructions are present except HALT or NEG, a halt will occur. ***
+
+****HALT execution Cycle*****
+ st=10 	halt
+
+*** Double Operand: Read source ***
+ st=30 		rt='None'
+	cond='ir108' value=0 nst=31
+	cond='ir108' value=1 nst=32
+	cond='ir108' value=2 nst=33
+	cond='ir108' value=3 nst=35
+	cond='ir108' value=4 nst=38
+	cond='ir108' value=5 nst=40
+	nst=10
+
+***SEC Register ***
+ st= 31 rt='[Rn]->t2'			rac=2 it2
+	nst=70
+
+***SRC Indirect***
+ st=32 rt='[Rn]->t3'			rac=2 it3
+	nst=60
+
+***SRC Autoincrement***
+ st=33  rt='[Rn]->t3[Rn]+1->q'	 	rac=2 it3 ib p1 oadder
+ st=34  rt='[q]->Rn'			oq wac=2
+	nst=60
+
+***SRC Autodecrement***
+ st=35	rt='[Rn]-t1'			rac=2 it1
+ st=36  rt='[t1]-1->[q]' 		oa comp oadder
+ st=37  rt='[q]->Rn, [q]->t3' 		oq wac=2 it3
+	nst=60
+
+***SRC Index***
+ st=38 rt='[Rn]+n->q'			rac=2 it1 oa ib oadder
+ st=39 rt='[q] -> t2'			oq it2
+	nst=60
+
+***SRC Absolute***
+ 
+
+***SRC Immediate***
+ st=
+
+***Read Source operand***
+ st=60 rt='[t3] -> mar' 		ot3 imar
+ st=61 rt='[[mar]] -> mdr' 		read
+ st=62 rt='[mdr] -> t2'			omdr it2
+	nst=70
+
+
+***Single/Double Operand: read destination***
+ st=70 rt='None'
+	cond='ir64' value=0 nst=71
+	cond='ir64' value=1 nst=72
+	cond='ir64' value=2 nst=73
+	cond='ir64' value=3 nst=75
+	cond='ir64' value=4 nst=78
+	cond='ir64' value=5 nst=79
+ 
+
+****DST Register ****
+ st=71 rt='[Rn]->t4'				rac=3 it4
+	nst=100
+
+****DST indirect ****
+ st=72 rt='[Rn]->t5' 				rac=3 it5
+	nst=90
+
+****DST Autoincrement ****
+ st=73 rt='[Rn]+1->q' 				rac=3 it5 ib p1 oadder
+ st=74 rt='[q]->Rn'				oq wac=3
+	nst=90
+
+****DST Autodecrement****
+ st=75 rt='[Rn]->t1'				rac=3 it1
+ st=76 rt='[t1]-1->q' 				oa comp oadder
+ st=77 rt='[q]->t5'     			oq wac=3 it5
+	nst=90
+
+***DST Index***
+ st=78 rt='[Rn]+n->q'				rac=3 it1 oa ib oadder
+ st=79 rt='[q] -> t4'				oq it4
+	nst=90
+
+***DST Absolute***
+ 
+***DST Immediate***
+
+
+****Read Destination operand****
+ st=90 rt='[t5]-> mar' 				ot5 imar
+ st=91 rt='[[mar]] -> mdr'   			read
+ st=92 rt='[mdr] -> t4'				omdr it4
+	nst=100
+
+***Test OpCode ****
+ st=100 rt='None'
+	cond='ir118' value=2 nst=115
+	cond='ir118' value=4 nst=110
+	cond='ir1512' value=1 nst=111
+	cond='ir1512' value=2 nst=113
+	cond='ir1512' value=4 nst=130
+	  
+ st=101	rt='unknown OP Code'
+	nst=10
+
+***Op Code: Neg***	
+ st=110 rt='-[t4] -> q'				ot4 ib comp p1 oadder newv newc 
+	nst=190
+
+***Op Code: ADD***
+ st=111 rt='[src] -> t1'  			ot2 it1
+ st=112 rt='t1 + [dst] -> q'   			ot4 oa ib oadder
+	nst=190
+
+***Op Code: SUB***
+ st=113 rt='[dst] -> t1'			ot4 it1
+ st=114 rt='t1-[src] -> q'			ot2 oa ib comp p1 oadder
+	nst=190
+
+***Op Code: INC***
+ st=115 rt='[t4]+1'				ot4 ib iq p1
+	nst=190
+
+***Op Code: Exg***
+ st=130 rt='t2->q' 				ot2 ib oadder
+ 
+
+
+***Write DST to SRC***
+ st=131 rt='None'
+	cond='ir108' value=0 nst=133
+	cond='ir108' value=1 nst=134
+	cond='ir108' value=2 nst=134
+	cond='ir108' value=3 nst=134
+ st=132 rt='EXG: invalid addressing mode'
+	nst=0
+
+***Register: Mode 0***
+ st=133 rt='[t4]->Rn'				wac=2 ot4
+ 	nst=200	
+
+***Indirect: Mode 1,2,3***
+ st=134 rt='t3-> mar'				ot3 imar
+ st=135 rt='t4-> mdr'				ot4 imdr
+ st=136 rt='mdr->mar' 				write
+	nst=200
+
+
+
+***WRITE result to DST***
+ st=190 rt='writeback q->t5'
+	cond='ir64' value=0 nst=195
+
+***Addr mode 1-3***
+ st=191 rt='t5-> mar' 				ot5 imar
+ st=192 rt='q->mdr'				oq imdr newz newn
+ st=193 rt='write' 				write
+	nst=0
+
+***Addr mode 0 register***
+ st=195 rt='q->Rn'				oq wac=3 newz newn
+	nst=0
+
+***Write without changing CC***
+ st=200 rt='Writeback q->t5'
+	cond='ir64' value=0 nst=205
+
+
+***Addr mode 1-3***
+ st=201 rt='t5->mar'				ot5 imar 
+ st=202 rt='q->mdr'				oq imdr
+ st=203 rt='write' 				write
+	nst=0	
+
+
+***Addr mode 0 register***
+ st=205 rt='q-> Rn'		 		oq wac=3
+	nst=0
+
+
