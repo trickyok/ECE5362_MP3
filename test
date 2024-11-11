@@ -1,1 +1,69 @@
-womp womp
+**************
+start EXG Test
+0000 AC
+0050 X
+0100 SP
+0000 PC
+0000 CVZN
+4050
+0060
+4241
+0010
+4358
+0050
+0000
+end EXG Test
+**************
+start NEG Test
+0400
+0411
+0422
+0432
+0441
+0001
+0450
+0050
+0400
+0000
+end NEG Test
+**************
+start ADD Test
+1601
+0001
+1511
+0050
+1242
+0010
+1633
+0004
+0000
+end ADD Test
+**************
+start SUB Test
+2600
+0002
+2511
+0050
+2249
+0060
+2633
+0004
+0000
+end SUB Test
+**************
+start INC Test
+0200
+0211
+0220
+0230
+0240
+005D
+0250
+0060
+0000
+end INC Test
+**************
+start JSR Test
+nothing yet lolz
+end JSR Test
+**************
