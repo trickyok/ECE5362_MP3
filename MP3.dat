@@ -4,13 +4,18 @@
 **** Emmanuel Karikari & Gage Farmer ****
 ***************************
 *** Start fetch cycle ***
- st=0 rt='[pc]-> mar'       imar rac=1 rn=3
- st=1 rt='[[mar]]-> mdr'    read
- st=2 rt='[mdr] -> ir'	    omdr iir
- st=3 rt='[pc]+1 -> q'	    rac=1 rn=3 ib p1 oadder
- st=4 rt='[q] -> pc'	    oq wac=1 wn=3 
-	cond='ir1512'       value=4 nst=30
-	cond='ir1512'	    value=0 nst=70	    
+ 
+ st=0 rt='[pc]-> mar'       			imar rac=1 rn=3
+ st=1 rt='[[mar]]-> mdr'    			read
+ st=2 rt='[mdr] -> ir'	    			omdr iir
+ st=3 rt='[pc]+1 -> q'	    			rac=1 rn=3 ib p1 oadder
+ st=4 rt='[q] -> pc'	    			oq wac=1 wn=3 
+ 
+	cond='ir1512'	    			value=0 nst=70
+	cond='ir1512'       			value=1 nst=30
+	cond='ir1512'	    			value=2 nst=30
+	cond='ir1512'       			value=3 nst=30
+	cond='ir1512'       			value=4 nst=30   	
 	nst=10
 
 *** If any instructions are present except HALT or NEG, a halt will occur. ***
@@ -29,18 +34,21 @@
 	cond='ir108' value=6 nst=63
 	nst=10
 
-***SEC Register ***
+***SRC Register ***
  st= 31 rt='[Rn]->t2'				rac=2 it2
 	nst=70
+
 
 ***SRC Indirect***
  st=32 rt='[Rn]->t3'				rac=2 it3
 	nst=60
 
+
 ***SRC Autoincrement***
  st=33  rt='[Rn]->t3, [Rn]+1->q'		rac=2 it3 ib p1 oadder
  st=34  rt='[q]->Rn'				oq wac=2
 	nst=60
+
 
 ***SRC Autodecrement***
  st=35	rt='[Rn]-t1'				rac=2 it1
@@ -48,13 +56,15 @@
  st=37  rt='[q]->Rn, [q]->t3' 			oq wac=2 it3
 	nst=60
 
+
 ***SRC Index***
  st=38 rt='rn->t1'				rac=2 it1
- st=39 rt='t1+t2->q'				oa ib oadder
+ st=39 rt='t1+t2->q'				ot2 oa ib oadder
  st=40 rt='q->mar'				oq imar
  st=41 rt='[[mar]]->[mdr]'			read
- st=42 rt='[mdr]->t2'				omdr ot2
+ st=42 rt='[mdr]->t2'				omdr it2
 	nst=70
+
 
 ***SRC Absolute***
  st=43 rt='t2-> mar'				ot2 imar
@@ -72,6 +82,7 @@
  st=61 rt='[[mar]] -> mdr' 			read
  st=62 rt='[mdr] -> t2'				omdr it2
 	nst=70
+
 
 ***Fetch 2nd word***
  st=63 rt='[pc]-> mar'      imar rac=1 rn=3
@@ -99,14 +110,17 @@
  st=71 rt='[Rn]->t4'				rac=3 it4
 	nst=100
 
+
 ****DST indirect ****
  st=72 rt='[Rn]->t5' 				rac=3 it5
 	nst=90
+
 
 ****DST Autoincrement ****
  st=73 rt='[Rn]+1->q' 				rac=3 it5 ib p1 oadder
  st=74 rt='[q]->Rn'				oq wac=3
 	nst=90
+
 
 ****DST Autodecrement****
  st=75 rt='[Rn]->t1'				rac=3 it1
@@ -114,13 +128,15 @@
  st=77 rt='[q]->t5'     			oq wac=3 it5
 	nst=90
 
+
 ***DST Index***
  st=78 rt='[rn] -> t1'				rac=3 it1
- st=79 rt='t1 + t5 -> q'				oa ot5 ib oadder
+ st=79 rt='t1 + t5 -> q'			oa ot5 ib oadder
  st=80 rt='q -> mar'				oq imar
  st=81 rt='[[mar]]->[mdr]'			read
  st=82 rt='[mdr]->t4'				omdr it4
 	nst=100
+
 
 ***DST Absolute***
  st=83 rt='t5-> mar'				ot5 imar
@@ -133,18 +149,21 @@
  st=86
   	nst=100
 
+
 ****Read Destination operand****
  st=90 rt='[t5]-> mar' 				ot5 imar
  st=91 rt='[[mar]] -> mdr'   			read
  st=92 rt='[mdr] -> t4'				omdr it4
 	nst=100
 
+
 ***Fetch 2nd word***
  st=93 rt='[pc]-> mar'      imar rac=1 rn=3
  st=94 rt='[[mar]]-> mdr'   read
  st=95 rt='[mdr] -> t5'	    omdr it5
  st=96 rt='[pc]+1 -> q'	    rac=1 rn=3 ib p1 oadder	
- st=97 rt='q -> [pc]'	    oq wac=1 wn=3 
+ 
+	cond='ibrch' value=1 nst=138
 	cond='ir64' value=4 nst=78
 	cond='ir64' value=5 nst=83	
  	cond='ir64' value=6 nst=86
@@ -154,46 +173,56 @@
  st=100 rt='None'
 	cond='ir1512' value=1 nst=111
 	cond='ir1512' value=2 nst=113
-	cond='ir1512' value=4 nst=124
+	cond='ir1512' value=4 nst=125
 	cond='ir118' value=2 nst=115
 	cond='ir118' value=4 nst=110
 	cond='ir118' value=7 nst=116
+	cond='ir7'   value=7 nst=141
 	  
  st=101	rt='unknown OP Code'
 	nst=10
+
 
 ***Op Code: Neg***	
  st=110 rt='-[t4] -> q'				ot4 ib comp p1 oadder newv newc 
 	nst=190
 
+
 ***Op Code: ADD***
  st=111 rt='[src] -> t1'  			ot2 it1
- st=112 rt='t1 + [dst] -> q'   			ot4 oa ib oadder
+ st=112 rt='t1 + [dst] -> q'   			ot4 oa ib oadder newc newv newz newn
 	nst=190
+
 
 ***Op Code: SUB***
  st=113 rt='[dst] -> t1'			ot4 it1
- st=114 rt='t1-[src] -> q'			ot2 oa ib comp p1 oadder
+ st=114 rt='t1-[src] -> q'			ot2 oa ib comp p1 oadder newc newv newz newn
 	nst=190
+
 
 ***Op Code: INC***
  st=115 rt='[t4]+1'				ot4 ib p1 oadder
 	nst=190
 
+
 ***Op Code: JSR***
- st=116 rt='[SP]-1 -> SP' 			rac=1 rn=2 it1 oa comp oadder
- st=117 rt='q->SP' 				oq wac=1 wn=2
- st=118 rt='pc-> mdr'				rac=1 rn=3 omdr
- st=119 rt='SP -> mar' 				rac=1 rn=2 imar
- st=120 rt='pc -> [sp]' 			write
- st=121 rt='[pc]-> mar'       			imar rac=1 rn=3
- st=122 rt='[[mar]]-> mdr'    			read
- st=123 rt='[mdr] -> pc'	    		omdr rac=1 rn=3
+ st=116 rt='[SP]-> t1' 				rac=1 rn=2 it1  
+ st=117 rt='[t1]-1 -> q'			oa comp oadder
+ st=118 rt='q->SP' 				oq wac=1 wn=2
+ st=119 rt='pc-> mdr'				rac=1 rn=3 imdr
+ st=120 rt='sp -> mar' 				rac=1 rn=2 imar
+ st=121 rt='pc -> [sp]' 			write
+ st=122 rt='[pc]-> mar'       			imar rac=1 rn=3
+ st=123 rt='[[mar]]-> mdr'    			read
+ st=124 rt='[mdr] -> pc'	    		omdr wac=1 wn=3
  	nst=0
+
  
 ***Op Code: Exg***
- st=124 rt='t2->q' 				ot2 ib oadder
+ st=125 rt='t2->q' 				ot2 ib oadder
  	nst=131
+
+
 ***Write DST to SRC***
  st=131 rt='None'
 	cond='ir108' value=0 nst=133
@@ -203,9 +232,11 @@
  st=132 rt='EXG: invalid addressing mode'
 	nst=0
 
+
 ***Register: Mode 0***
  st=133 rt='[t4]-> Rn'				wac=2 ot4
  	nst=200	
+
 
 ***Indirect: Mode 1,2,3***
  st=134 rt='t3-> mar'				ot3 imar
@@ -214,13 +245,43 @@
 	nst=200
 
 
+*** Op Code: Branching ***
+ st=137 rt='Branch'
+	cond='ibrch' value=1 nst=93	
+ st=138 rt='PCupdated -> t1' 			rac=1 rn=3 it1
+ st=139 rt='t1 + t5(offset)' 			oa ot5 ib oadder
+ st=140 rt='q -> [pc]' 				oq wac=1 wn=3
+	nst=0
+ 
+
+*** Op Code: RTS ***
+ st=141 rt='sp-> mar'				rac=1 rac=2 imar
+ st=142 rt='[[mar]] -> mdr'			read
+ st=143 rt='[mdr] -> pc'			omdr wac=1 wn=3
+ st=145 rt='sp+1 -> q' 				rac=1 rn=2 ib p1 oadder
+ st=146 rt='q -> sp'				oq wac=1 rn=2
+	nst=1
+
+*** Op Code: BHI ***
+ st=147
+	cond='ibrch' value=1 nst=148
+ st=148 rt='none'
+	cond='ir5'   value=1 nst=0
+ 
+
+ st=149	
+	cond='ibrch' value=1 nst=150
+ st=150 rt='none'
+	cond='ir5' value=0 nst=116
+ 
+
 
 ***WRITE result to DST***
  st=190 rt='writeback q->t5'			 
 	cond='ir64' value=0 nst=195
 	cond='ir64' value=4 nst=196
-	cond='ir64' value=5 nst=196
-	cond='ir64' value=6 nst=196
+	cond='ir64' value=5 nst=198
+	cond='ir64' value=6 nst=198
 
 
 ***Addr mode 1-3***
@@ -229,19 +290,29 @@
  st=193 rt='write' 				write
 	nst=0
 
+
 ***Addr mode 0 register***
  st=195 rt='q->Rn'				oq wac=3 newz newn
 	nst=0
-***Addr mode 4-6***
- st=196 rt='q->t5'				oq it5  newz newn
+
+
+***Addr mode 4 Index***
+ st=196 rt='q->mdr'				oq imdr
+ st=197 rt='mdr->mar'				write
 	nst=0
+
+
+***Addr mode 5-6***
+ st=198 rt='q->t5'				oq it5  newz newn
+	nst=0
+
 
 ***Write without changing CC***
  st=200 rt='Writeback q->t5'			 
 	cond='ir64' value=0 nst=205
  	cond='ir64' value=4 nst=206
-	cond='ir64' value=5 nst=206
-	cond='ir64' value=6 nst=206
+	cond='ir64' value=5 nst=208
+	cond='ir64' value=6 nst=208
 
 
 ***Addr mode 1-3***
@@ -254,9 +325,20 @@
 ***Addr mode 0 register***
  st=205 rt='q-> Rn'		 		oq wac=3
 	nst=0
-***Addr mode 4-6 
- st=206 rt='q->t5'				oq it5   
+
+
+***Addr mode 4***
+ st=206 rt='q->mdr'				oq imdr
+ st=207 rt='mdr-> mar'				write
 	nst=0
+
+
+***Addr mode 5-6***
+ st=208 rt='q->t5'				oq it5   
+	nst=0
+ 
+
+
 
 
 
