@@ -1,16 +1,16 @@
 **************
 start EXG Test
 0000 AC
-0050 X
+0500 X
 0100 SP
 0000 PC
 0000 CVZN
 4050
-0060
+0600
 4241
-0010
+0100
 4358
-0050
+0500
 0000
 end EXG Test
 **************
@@ -43,7 +43,7 @@ start SUB Test
 2600
 0002
 2511
-0050
+0500
 2249
 0060
 2633
@@ -59,11 +59,13 @@ start INC Test
 0240
 005D
 0250
-0060
+0600
 0000
 end INC Test
 **************
 start JSR Test
-nothing yet lolz
+760
+FC
+
 end JSR Test
 **************
