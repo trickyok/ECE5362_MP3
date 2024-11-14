@@ -10,12 +10,28 @@
  st=2 rt='[mdr] -> ir'	    			omdr iir
  st=3 rt='[pc]+1 -> q'	    			rac=1 rn=3 ib p1 oadder
  st=4 rt='[q] -> pc'	    			oq wac=1 wn=3 
- 
+ st=5 rt='RTS'
+	cond='ir64'				value=0 nst=7
+	cond='ir64'				value=1 nst=8
+	cond='ir64'				value=2 nst=8
+	cond='ir64'				value=3 nst=8
 	cond='ir1512'	    			value=0 nst=70
 	cond='ir1512'       			value=1 nst=30
 	cond='ir1512'	    			value=2 nst=30
 	cond='ir1512'       			value=3 nst=30
-	cond='ir1512'       			value=4 nst=30   	
+	cond='ir1512'       			value=4 nst=30
+ st=7 rt='RTS or Branch'
+	cond='ir7'				value=1 nst=8
+	cond='ir1512'	    			value=0 nst=70
+	cond='ir1512'       			value=1 nst=30
+	cond='ir1512'	    			value=2 nst=30
+	cond='ir1512'       			value=3 nst=30
+	cond='ir1512'       			value=4 nst=30   
+
+ st=8
+	cond='ir0'				value=1 nst=137
+	cond='ir1'				value=1 nst=137
+        cond='ir7'				value=1 nst=141
 	nst=10
 
 *** If any instructions are present except HALT or NEG, a halt will occur. ***
@@ -158,11 +174,11 @@
 
 
 ***Fetch 2nd word***
- st=93 rt='[pc]-> mar'      imar rac=1 rn=3
- st=94 rt='[[mar]]-> mdr'   read
- st=95 rt='[mdr] -> t5'	    omdr it5
- st=96 rt='[pc]+1 -> q'	    rac=1 rn=3 ib p1 oadder	
- 
+ st=93 rt='[pc]-> mar'      			imar rac=1 rn=3
+ st=94 rt='[[mar]]-> mdr'   			read
+ st=95 rt='[mdr] -> t5'	    			omdr it5
+ st=96 rt='[pc]+1 -> q'	    			rac=1 rn=3 ib p1 oadder	
+ st=97 
 	cond='ibrch' value=1 nst=138
 	cond='ir64' value=4 nst=78
 	cond='ir64' value=5 nst=83	
@@ -201,7 +217,7 @@
 
 
 ***Op Code: INC***
- st=115 rt='[t4]+1'				ot4 ib p1 oadder
+ st=115 rt='[t4]+1'				ot4 ib p1 oadder newc newv newz newn
 	nst=190
 
 
@@ -214,7 +230,7 @@
  st=121 rt='pc -> [sp]' 			write
  st=122 rt='[pc]-> mar'       			imar rac=1 rn=3
  st=123 rt='[[mar]]-> mdr'    			read
- st=124 rt='[mdr] -> pc'	    		omdr wac=1 wn=3
+ st=124 rt='[mdr] -> pc'	    		omdr wac=1 wn=3  
  	nst=0
 
  
@@ -247,7 +263,9 @@
 
 *** Op Code: Branching ***
  st=137 rt='Branch'
+	cond='ir75'   value=5 nst=149
 	cond='ibrch' value=1 nst=93	
+ 
  st=138 rt='PCupdated -> t1' 			rac=1 rn=3 it1
  st=139 rt='t1 + t5(offset)' 			oa ot5 ib oadder
  st=140 rt='q -> [pc]' 				oq wac=1 wn=3
@@ -255,25 +273,28 @@
  
 
 *** Op Code: RTS ***
- st=141 rt='sp-> mar'				rac=1 rac=2 imar
+ st=141 rt='sp-> mar'				rac=1 rn=2 imar  
  st=142 rt='[[mar]] -> mdr'			read
  st=143 rt='[mdr] -> pc'			omdr wac=1 wn=3
- st=145 rt='sp+1 -> q' 				rac=1 rn=2 ib p1 oadder
- st=146 rt='q -> sp'				oq wac=1 rn=2
-	nst=1
+ st=144 rt='[pc]+1 -> q'	    		rac=1 rn=3 ib p1 oadder
+ st=145 rt='q->pc' 				oq wac=1 wn=3
+ st=146 rt='[pc]-> mar'       			imar rac=1 rn=3
+ st=147 rt='sp+1 -> q' 				rac=1 rn=2 ib p1 oadder
+ st=148 rt='q -> sp'				oq wac=1 wn=2
+	nst=0
 
 *** Op Code: BHI ***
- st=147
-	cond='ibrch' value=1 nst=148
- st=148 rt='none'
+ st=149
+	cond='ibrch' value=1 nst=150
+ st=150 rt='none'
 	cond='ir5'   value=1 nst=0
  
 
- st=149	
-	cond='ibrch' value=1 nst=150
- st=150 rt='none'
+ st=151	
+	cond='ibrch' value=1 nst=152
+ st=152 rt='none'
 	cond='ir5' value=0 nst=116
- 
+ 	 
 
 
 ***WRITE result to DST***
