@@ -64,8 +64,17 @@ start INC Test
 end INC Test
 **************
 start JSR Test
-760
-FC
-
+3060
+00FC
+0700
+3610
+0080
+0710
+0720
+0730
+0740
+0004
+0750
+0108
 end JSR Test
 **************
