@@ -1,0 +1,18 @@
+************
+start test 3
+0001 AC
+0007 X
+0003 SP
+0004 PC
+1101 CVZN
+1001 add x ac
+5204 or (x)+ ac
+0642 jmp n+SP
+0003 n
+0650 jmp [n]
+0000 n
+0641 jmp n+X
+FFFC n
+B0C0
+end test 3
+************
