@@ -1,0 +1,18 @@
+************
+start test 4
+FFFE AC
+FFFF X
+0006 SP
+0000 PC
+0100 CVZN
+0200 inc ac
+0091 BMI
+0001
+1001 add ac x
+0200 inc ac
+009A BLS
+FFFD -3
+0201 inc x
+0000 halt
+end test 4
+************

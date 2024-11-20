@@ -1,0 +1,18 @@
+************
+start test 2
+A004 AC
+EEED X
+0007 SP
+0001 PC
+0000 CVZN
+0200 inc ac
+4012 exg ac (sp)
+5008 or sp ac
+5500 or n ac
+0007 n
+6004 and x ac
+0000 halt
+DCBA
+00EE
+end test 2
+************
