@@ -12,6 +12,7 @@
  st=4 rt='[q] -> pc'	    			oq wac=1 wn=3 
 	cond='ir158' value=0 nst=20
 	cond='ir1512' value=9 nst=70
+	nst=30
 
 ****HALT execution Cycle*****
  st=10 	halt
@@ -61,7 +62,7 @@ st=23 rt='check RTS'
 	nst=60
 
 ***SRC AM:4/5/6*** next word
- st=38 rt='[pc]'-> mar' 			imar rac=1 rn=3
+ st=38 rt='[pc] -> mar' 			imar rac=1 rn=3
  st=39 rt='[[mar]]->mdr'			read
  st=40 rt='[mdr]->t3'				omdr it3
  st=41 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
@@ -71,14 +72,16 @@ st=23 rt='check RTS'
 	cond='ir108'    value=6 nst=47
  st=43 rt='src:invalid addrMode'
 	nst=10
- ***SRC AM:4:
+***SRC AM:4:***
+
  st=44 rt='[t3]->t1'	ot3 it1
  st=45 rt='[t1]+[Rn]->q'	oa ib rac=2 oadder
  st=46 rt='[q]->t3'		oq it3
 	nst=60
- ***SRC AM:6****
+***SRC AM:6****
+****EA is already in t3***
 
- ***SRC AM:6 Immediate***
+***SRC AM:6 Immediate***
  st=60 rt='[t3]->mar'		ot3 imar
  st=61 rt='[[mar]]->mdr' 	read
  st=62 rt='[mdr] -> t2'		omdr it2
@@ -117,7 +120,7 @@ st=23 rt='check RTS'
 	nst=90
 
 ***DST AM:4/5/6*** next word
- st=78 rt='[pc]'-> mar' 			imar rac=1 rn=3
+ st=78 rt='[pc]-> mar' 			imar rac=1 rn=3
  st=79 rt='[[mar]]->mdr'			read
  st=80 rt='[mdr]->t5'				omdr it5
  st=81 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
@@ -127,20 +130,20 @@ st=23 rt='check RTS'
  st=83 rt='dst:invalid addrMode'
 	nst=10
 
- ***DST AM:4 - Indexed***
+***DST AM:4 - Indexed***
  st=84 rt='[t5]->t1'		ot5 it1
  st=85 rt='[t1]+[Rn]->q'	oa ib rac=2 oadder
  st=86 rt='[q]->t5'		oq it5
 	nst=90
- ***DST AM:6****
+***DST AM:6****
 
- ***Read Destination operand for AM:4/5***
+***Read Destination operand for AM:4/5***
  st=90 rt='[t5]->mar'		ot5 imar
  st=91 rt='[[mar]]->mdr' 	read
  st=92 rt='[mdr] -> t4'		omdr it4
 	nst=100
 
- ***Test OpCode***
+***Test OpCode***
  st=100 rt='None'
 	cond='ir1512' value=1 nst=110
 	cond='ir1512' value=2 nst=115	
@@ -157,8 +160,7 @@ st=23 rt='check RTS'
 
 ***SUB***
  st=115 rt='[t4]->t1'				ot4 it1	
- st=116 rt='[t1]-[t2]->q'			ot2 ib oa oadder comp p1
- newv newc
+ st=116 rt='[t1]-[t2]->q'			ot2 ib oa oadder comp p1 newv newc
  st=117 rt='barrow check'
  	cond='c' value=0 nst=118
 	cond='c' value=1 nst=119
@@ -205,7 +207,7 @@ st=23 rt='check RTS'
  st=158 rt='q->sp,q->mar'			oq wac=1 wn=2 imar
  st=159 rt='pc->mdr'				rac=1 rn=3 imdr
  st=160 rt='write'				write
- st=161 rt='EA(t4)->pc'				ot5 wac-1 wn=3
+ st=161 rt='EA(t4)->pc'				ot5 wac=1 wn=3
 	nst=0
 
 
@@ -216,7 +218,7 @@ st=23 rt='check RTS'
  st=171 rt='ibrch=1 XOR IR5'
 	cond='ir5'   value=0 nst=173
  	cond='ir5'   value=1 nst=180
- st=172 rt=ibrch=0 XOR IR5'
+ st=172 rt='ibrch=0 XOR IR5'
 	cond='ir5'   value=0 nst=180
  	cond='ir5'   value=1 nst=173
 
