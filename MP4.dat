@@ -19,21 +19,21 @@
  
 
 ***Branch/Special Instructions ***
-st=20 rt='None'
+ st=20 rt='None'
 	cond='ir76' value=2 nst=21
 	nst=10
-st=21 rt='check RTS'
+ st=21 rt='check RTS'
 	cond='ir64' value=0 nst=22
 	nst=170
-st=22 rt='check RTS'
+ st=22 rt='check RTS'
 	cond='ir1' value=0 nst=23
 	nst=170
-st=23 rt='check RTS'
+ st=23 rt='check RTS'
 	cond='ir0' value=0 nst=200
 	nst=170
 
 *** Double Operand: Read source ***
- st=30 		rt='None'
+ st=30 rt='None'
 	cond='ir108' value=0 nst=31
 	cond='ir108' value=1 nst=32
 	cond='ir108' value=2 nst=33
@@ -241,7 +241,7 @@ st=23 rt='check RTS'
  st=203 rt='q->sp'				oq wac=1 wn=2
 
 
-*****Write result to DST *****8
+*****Write result to DST *****
  st=290 rt='WriteBack [q]->[t5]'
 	cond='ir64' value=0 nst=295
 *---Addr mode 1-5: 6 is invalid for destination
@@ -266,7 +266,22 @@ st=23 rt='check RTS'
 	nst=0
 
 
+*** Op-Code: CLR ***
+ st=320 rt='0 + 0 = 0' 				oadder
+ st=321 rt='[q] -> t2'				oq clrc clrv newz newn it2
+ 	nst=0
 
+
+*** Op-Code: JMP ***
+ st=340 rt='[t2] -> PC'				ot2 wac=3
+ 	nst=0
+
+
+*** Op-Code: COMP ***
+ st=360 rt='[t2] -> b'				ot2 ib
+ st=361	rt='!b'					comp oadder
+ st=362 rt='[q] -> t2'				oq newn newz clrv clrc it2
+ 	nst=0
 
 
 
