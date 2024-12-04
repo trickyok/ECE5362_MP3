@@ -5,11 +5,11 @@
 ***************************
 *** Start fetch cycle ***
  
- st=0 rt='[pc]-> mar'       			imar rac=1 rn=3
- st=1 rt='[[mar]]-> mdr'    			read
- st=2 rt='[mdr] -> ir'	    			omdr iir
- st=3 rt='[pc]+1 -> q'	    			rac=1 rn=3 ib p1 oadder
- st=4 rt='[q] -> pc'	    			oq wac=1 wn=3 
+ st=0 rt='[pc]-> mar'       		imar rac=1 rn=3
+ st=1 rt='[[mar]]-> mdr'    		read
+ st=2 rt='[mdr] -> ir'	    		omdr iir
+ st=3 rt='[pc]+1 -> q'	    		rac=1 rn=3 ib p1 oadder
+ st=4 rt='[q] -> pc'	    		oq wac=1 wn=3 
 	cond='ir158' value=0 nst=20
 	cond='ir1512' value=9 nst=70
 	nst=30
@@ -50,7 +50,7 @@
 
 
 ***SRC Autoincrement***
- st=33  rt='[Rn]->t3, [Rn]+1->q'		rac=2 it3 ib p1 oadder
+ st=33  rt='[Rn]->t3, [Rn]+1->q'	rac=2 it3 ib p1 oadder
  st=34  rt='[q]->Rn'				oq wac=2
 	nst=60
 
@@ -58,7 +58,7 @@
 ***SRC Autodecrement***
  st=35	rt='[Rn]-t1'				rac=2 it1
  st=36  rt='[t1]-1->[q]' 			oa comp oadder
- st=37  rt='[q]->Rn, [q]->t3' 			oq wac=2 it3
+ st=37  rt='[q]->Rn, [q]->t3' 		oq wac=2 it3
 	nst=60
 
 ***SRC AM:4/5/6*** next word
@@ -66,25 +66,25 @@
  st=39 rt='[[mar]]->mdr'			read
  st=40 rt='[mdr]->t3'				omdr it3
  st=41 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
- st=42 rt='[q]->pc'				oq wac=1 wn=3
-	cond='ir108'	value=4 nst=44
-	cond='ir108'    value=5 nst=60
-	cond='ir108'    value=6 nst=47
+ st=42 rt='[q]->pc'					oq wac=1 wn=3
+	cond='ir108' value=4 nst=44
+	cond='ir108' value=5 nst=60
+	cond='ir108' value=6 nst=47
  st=43 rt='src:invalid addrMode'
 	nst=10
 ***SRC AM:4:***
 
- st=44 rt='[t3]->t1'	ot3 it1
- st=45 rt='[t1]+[Rn]->q'	oa ib rac=2 oadder
- st=46 rt='[q]->t3'		oq it3
+ st=44 rt='[t3]->t1'				ot3 it1
+ st=45 rt='[t1]+[Rn]->q'			oa ib rac=2 oadder
+ st=46 rt='[q]->t3'					oq it3
 	nst=60
 ***SRC AM:6****
 ****EA is already in t3***
 
 ***SRC AM:6 Immediate***
- st=60 rt='[t3]->mar'		ot3 imar
- st=61 rt='[[mar]]->mdr' 	read
- st=62 rt='[mdr] -> t2'		omdr it2
+ st=60 rt='[t3]->mar'				ot3 imar
+ st=61 rt='[[mar]]->mdr' 			read
+ st=62 rt='[mdr] -> t2'				omdr it2
 	nst=70
 
 
@@ -109,7 +109,7 @@
 
 ****DST Autoincrement ****
  st=73 rt='[Rn]+1->q' 				rac=3 it5 ib p1 oadder
- st=74 rt='[q]->Rn'				oq wac=3
+ st=74 rt='[q]->Rn'					oq wac=3
 	nst=90
 
 
@@ -120,27 +120,27 @@
 	nst=90
 
 ***DST AM:4/5/6*** next word
- st=78 rt='[pc]-> mar' 			imar rac=1 rn=3
+ st=78 rt='[pc]-> mar' 				imar rac=1 rn=3
  st=79 rt='[[mar]]->mdr'			read
  st=80 rt='[mdr]->t5'				omdr it5
  st=81 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
- st=82 rt='[q]->pc'				oq wac=1 wn=3
+ st=82 rt='[q]->pc'					oq wac=1 wn=3
 	cond='ir64'	value=4 nst=84
-	cond='ir64'     value=5 nst=90
+	cond='ir64' value=5 nst=90
  st=83 rt='dst:invalid addrMode'
 	nst=10
 
 ***DST AM:4 - Indexed***
- st=84 rt='[t5]->t1'		ot5 it1
- st=85 rt='[t1]+[Rn]->q'	oa ib rac=2 oadder
- st=86 rt='[q]->t5'		oq it5
+ st=84 rt='[t5]->t1'				ot5 it1
+ st=85 rt='[t1]+[Rn]->q'			oa ib rac=2 oadder
+ st=86 rt='[q]->t5'					oq it5
 	nst=90
 ***DST AM:6****
 
 ***Read Destination operand for AM:4/5***
- st=90 rt='[t5]->mar'		ot5 imar
- st=91 rt='[[mar]]->mdr' 	read
- st=92 rt='[mdr] -> t4'		omdr it4
+ st=90 rt='[t5]->mar'				ot5 imar
+ st=91 rt='[[mar]]->mdr' 			read
+ st=92 rt='[mdr] -> t4'				omdr it4
 	nst=100
 
 ***Test OpCode***
@@ -164,13 +164,13 @@
  st=117 rt='barrow check'
  	cond='c' value=0 nst=118
 	cond='c' value=1 nst=119
- st=118 rt='setc'				setc
+ st=118 rt='setc'					setc
  	nst=290
- st=119 rt='clrc'				clrc
+ st=119 rt='clrc'					clrc
 	nst=290
 
 ***EXG***
- st=130 rt='t2->q'				ot2 ib oadder
+ st=130 rt='t2->q'					ot2 ib oadder
 
 ***Write DST to SRC***
  st=131 rt='None'
@@ -202,11 +202,11 @@
 	nst=290
 
 ***Op Code: JSR***		
- st=156 rt='sp->t1'				rac=1 rn=2 it1
+ st=156 rt='sp->t1'					rac=1 rn=2 it1
  st=157 rt='t1-1->q'				oa comp oadder
  st=158 rt='q->sp,q->mar'			oq wac=1 wn=2 imar
  st=159 rt='pc->mdr'				rac=1 rn=3 imdr
- st=160 rt='write'				write
+ st=160 rt='write'					write
  st=161 rt='EA(t4)->pc'				ot5 wac=1 wn=3
 	nst=0
 
@@ -222,23 +222,23 @@
 	cond='ir5'   value=0 nst=180
  	cond='ir5'   value=1 nst=173
 
- st=173 rt='PC->mar, PC->t1'			rac=1 rn=3 it1 imar
+ st=173 rt='PC->mar, PC->t1'		rac=1 rn=3 it1 imar
  st=174 rt='[[mar]]->mdr'			read
  st=175 rt='t1+1+mdr->q'			omdr oa ib p1 oadder
- st=176 rt='q->pc'				oq wac=1 wn=3
+ st=176 rt='q->pc'					oq wac=1 wn=3
 	nst=0
 
  st=180 rt='PC+1->q'				rac=1 rn=3 ib p1 oadder
- st=181 rt='q->PC'				oq wac=1 wn=3
+ st=181 rt='q->PC'					oq wac=1 wn=3
 	nst=0
 
 
 
 ********RTS**************
- st=200 rt='[sp]->mar,[sp]+1->q'		rac=1 rn=2 imar ib p1 oadder
+ st=200 rt='[sp]->mar,[sp]+1->q'	rac=1 rn=2 imar ib p1 oadder
  st=201 rt='[[mar]]->mdr'			read
  st=202 rt='[mdr]-> pc'				omdr wac=1 wn=3
- st=203 rt='q->sp'				oq wac=1 wn=2
+ st=203 rt='q->sp'					oq wac=1 wn=2
 
 
 *****Write result to DST *****
@@ -247,7 +247,7 @@
 *---Addr mode 1-5: 6 is invalid for destination
  st=291 rt='[t5] -> mar'			ot5 imar
  st=292 rt='[q] -> mdr'				oq imdr newz newn
- st=293 rt='write'				write
+ st=293 rt='write'					write
 	nst=0
 
 *---Addr mode 0: Register
@@ -259,10 +259,10 @@
 *---Addr mode 1-5: 6 is invalid for destination
  st=301 rt='[t5] -> mar'			ot5 imar
  st=302 rt='[q] -> mdr'				oq imdr 
- st=303 rt='write'				write
+ st=303 rt='write'					write
 	nst=0
 *---Addr Mode 0:Register
- st=305 rt='q->Rn'				oq wac=3
+ st=305 rt='q->Rn'					oq wac=3
 	nst=0
 
 
