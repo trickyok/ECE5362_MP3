@@ -279,7 +279,7 @@
 
 *** Op-Code: COMP ***
  st=360 rt='[t2] -> b'				ot2 ib
- st=361	rt='!b'					comp oadder
+ st=361	rt='!b'						comp oadder
  st=362 rt='[q] -> t2'				oq newn newz clrv clrc it2
  	nst=0
 
