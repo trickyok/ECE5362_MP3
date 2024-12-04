@@ -5,3 +5,8 @@ FFFF X
 0000 SP
 0000 PC
 0501 comp x
+0501 comp x
+0500 comp ac
+0500 comp ac
+0510 comp [ac]
+
