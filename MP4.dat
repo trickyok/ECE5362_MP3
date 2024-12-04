@@ -124,8 +124,8 @@
  st=79 rt='[[mar]]->mdr'			read
  st=80 rt='[mdr]->t5'				omdr it5
  st=81 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
- st=82 rt='[q]->pc'					oq wac=1 wn=3
-	cond='ir64'	value=4 nst=84
+ st=82 rt='[q]->pc'				oq wac=1 wn=3
+	cond='ir64' value=4 nst=84
 	cond='ir64' value=5 nst=90
  st=83 rt='dst:invalid addrMode'
 	nst=10
@@ -133,7 +133,7 @@
 ***DST AM:4 - Indexed***
  st=84 rt='[t5]->t1'				ot5 it1
  st=85 rt='[t1]+[Rn]->q'			oa ib rac=2 oadder
- st=86 rt='[q]->t5'					oq it5
+ st=86 rt='[q]->t5'				oq it5
 	nst=90
 ***DST AM:6****
 
@@ -146,11 +146,19 @@
 ***Test OpCode***
  st=100 rt='None'
 	cond='ir1512' value=1 nst=110
-	cond='ir1512' value=2 nst=115	
+	cond='ir1512' value=2 nst=115
+	cond='ir1512' value=3 nst=380
 	cond='ir1512' value=4 nst=130
-	cond='ir158'  value=4 nst=140
+	cond='ir1512' value=5 nst=
+	cond='ir1512' value=6 nst=
+	cond='ir158'  value=1 nst=320
 	cond='ir158'  value=2 nst=150
+	cond='ir158'  value=3 nst=
+	cond='ir158'  value=4 nst=140
+	cond='ir158'  value=5 nst=
+	cond='ir158'  value=6 nst=
 	cond='ir158'  value=7 nst=156
+	cond='ir158'  value=8 nst=
  st=101 rt='unknown OP Code'
 	nst=10
 
@@ -259,31 +267,41 @@
 *---Addr mode 1-5: 6 is invalid for destination
  st=301 rt='[t5] -> mar'			ot5 imar
  st=302 rt='[q] -> mdr'				oq imdr 
- st=303 rt='write'					write
+ st=303 rt='write'				write
 	nst=0
 *---Addr Mode 0:Register
- st=305 rt='q->Rn'					oq wac=3
+ st=305 rt='q->Rn'				oq wac=3
 	nst=0
 
 
 *** Op-Code: CLR ***
  st=320 rt='0 + 0 = 0' 				oadder
- st=321 rt='[q] -> t2'				oq clrc clrv newz newn it2
+ st=321 rt='[q] -> t4'				oq clrc clrv newz newn it4
  	nst=0
 
 
 *** Op-Code: JMP ***
- st=340 rt='[t2] -> PC'				ot2 wac=3
+ st=340 rt='[t4] -> PC'				ot4 wac=3
  	nst=0
 
 
 *** Op-Code: COMP ***
- st=360 rt='[t2] -> b'				ot2 ib
- st=361	rt='!b'						comp oadder
- st=362 rt='[q] -> t2'				oq newn newz clrv clrc it2
+ st=360 rt='[t4] -> b'				ot4 ib
+ st=361	rt='!b'					comp oadder
+ st=362 rt='[q] -> t4'				oq newn newz clrv clrc it4
  	nst=0
 
-
+*** Op-Code: MOVE ***
+ st=380 rt='[t2] -> t4'				ot2 newn newz clrv clrc it4
+ 	nst=0
+ 
+ *** Op-Code: DEC ***
+ st=400 rt='[t4] -> b'				ot4 ib
+ st=401 rt='!b + 1'				comp p1 oadder	
+ st=402 rt='[q] -> b'				oq ib
+ st=403 rt='!b -> q'				comp oadder
+ st=404 rt='[q] -> t4'				oq it4
+ 	nst=0		
 
 
 
