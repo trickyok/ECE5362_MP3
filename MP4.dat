@@ -21,6 +21,7 @@
 ***Branch/Special Instructions ***
  st=20 rt='None'
 	cond='ir76' value=2 nst=21
+	cond='ir75' value=1 nst=420
 	nst=10
  st=21 rt='check RTS'
 	cond='ir64' value=0 nst=22
@@ -295,7 +296,7 @@
  st=380 rt='[t2] -> t4'				ot2 newn newz clrv clrc it4
  	nst=0
  
- *** Op-Code: DEC ***
+*** Op-Code: DEC ***
  st=400 rt='[t4] -> b'				ot4 ib
  st=401 rt='!b + 1'				comp p1 oadder	
  st=402 rt='[q] -> b'				oq ib
@@ -303,10 +304,40 @@
  st=404 rt='[q] -> t4'				oq it4
  	nst=0		
 
-
-
-		
-
+*** Op-Code: SC/CC ***
+ st=420 rt='none'
+	cond='ir3' value=1 nst=421
+	cond='ir2' value=1 nst=424
+	cond='ir1' value=1 nst=427
+	cond='ir0' value=1 nst=432
+ st=421 rt='c'
+	cond='ir4' value=1 nst=423
+ st=422 rt='clr c'				clrc
+	nst=0
+ st=423 rt='set c'				setc
+	nst=0
+ st=424 rt='v'
+	cond='ir4' value=1 nst=426
+ st=425 rt='clr v'				clrv
+	nst=0
+ st=426 rt='set v'				setv
+	nst=0
+ st=427 rt='z'
+	cond='ir4' value=1 nst=430
+ st=428 rt='0->q'				oadder
+ st=429 rt='[q]-> t5 (clr z)'			oq newz it5
+	nst=0
+ st=430 rt='1 -> q'				p1 oadder
+ st=431 rt='[q] -> t5 (set z)'			oq newz it5
+	nst=0
+ st=432 rt='n'
+	cond='ir4' value=1 nst=435
+ st=433 rt='0->q'				oadder
+ st=434 rt='[q]-> t5 (clr n)'			oq newn it5
+	nst=0
+ st=435 rt='1 -> q'				p1 oadder
+ st=436 rt='[q] -> t5 (set n)'			oq newn it5
+	nst=0
 
 
 
