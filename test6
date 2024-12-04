@@ -1,0 +1,7 @@
+***************
+start COMP test
+0004 AC
+FFFF X
+0000 SP
+0000 PC
+0501 comp x
