@@ -153,10 +153,10 @@
 	cond='ir1512' value=6 nst=
 	cond='ir158'  value=1 nst=320
 	cond='ir158'  value=2 nst=150
-	cond='ir158'  value=3 nst=
+	cond='ir158'  value=3 nst=400
 	cond='ir158'  value=4 nst=140
-	cond='ir158'  value=5 nst=
-	cond='ir158'  value=6 nst=
+	cond='ir158'  value=5 nst=360
+	cond='ir158'  value=6 nst=340
 	cond='ir158'  value=7 nst=156
 	cond='ir158'  value=8 nst=
  st=101 rt='unknown OP Code'
