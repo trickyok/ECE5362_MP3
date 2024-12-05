@@ -1,0 +1,38 @@
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : ( 1001/  4097.)( 5204/ 20996.)(  642/  1602.)(    3/     3.)
+     4/   4. : (  650/  1616.)(    0/     0.)(  641/  1601.)( FFFC/    -4.)
+     8/   8. : ( B0C0/-20288.)(    0/     0.)(    0/     0.)(    0/     0.)
+ state is decimal format; registers are hex 
+   starting instruction 1
+    0    1    7   3   4    0    0    0    0    0    0   0    0    0 1101 [pc]-> mar      
+    1    1    7   3   4    0    0    0    0    0    0   4    0    0 1101 [[mar]]-> mdr   
+    2    1    7   3   4    0    0    0    0    0    0   4  650    0 1101 [mdr] -> ir     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    3    1    7   3   4    0    0    0    0    0    0   4  650  650 1101 [pc]+1 -> q     
+    4    1    7   3   4    0    5    0    0    0    0   4  650  650 1101 [q] -> pc       
+   70    1    7   3   5    0    5    0    0    0    0   4  650  650 1101 none            
+   78    1    7   3   5    0    5    0    0    0    0   4  650  650 1101 [pc]-> mar      
+   79    1    7   3   5    0    5    0    0    0    0   5  650  650 1101 [[mar]]->mdr    
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   80    1    7   3   5    0    5    0    0    0    0   5    0  650 1101 [mdr]->t5       
+   81    1    7   3   5    0    5    0    0    0    0   5    0  650 1101 [pc]+1->q       
+   82    1    7   3   5    0    6    0    0    0    0   5    0  650 1101 [q]->pc         
+   90    1    7   3   6    0    6    0    0    0    0   5    0  650 1101 [t5]->mar       
+   91    1    7   3   6    0    6    0    0    0    0   0    0  650 1101 [[mar]]->mdr    
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   92    1    7   3   6    0    6    0    0    0    0   0 1001  650 1101 [mdr] -> t4     
+  100    1    7   3   6    0    6    0    0 1001    0   0 1001  650 1101 none            
+  182    1    7   3   6    0    6    0    0 1001    0   0 1001  650 1101 ea(t4)->pc      
+   starting instruction 2
+    0    1    7   31001    0    6    0    0 1001    0   0 1001  650 1101 [pc]-> mar      
+    1    1    7   31001    0    6    0    0 1001    01001 1001  650 1101 [[mar]]-> mdr   
+  test 9 attempt to read from non-existant memory
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : ( 1001/  4097.)( 5204/ 20996.)(  642/  1602.)(    3/     3.)
+     4/   4. : (  650/  1616.)(    0/     0.)(  641/  1601.)( FFFC/    -4.)
+     8/   8. : ( B0C0/-20288.)(    0/     0.)(    0/     0.)(    0/     0.)

@@ -1,0 +1,59 @@
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : ( 2600/  9728.)(    2/     2.)( 2511/  9489.)(  500/  1280.)
+     4/   4. : ( 2249/  8777.)(   60/    96.)( 2633/  9779.)(    4/     4.)
+ state is decimal format; registers are hex 
+   starting instruction 1
+    0    0    0   0   0    0    0    0    0    0    0   0    0    0 0000 [pc]-> mar      
+    1    0    0   0   0    0    0    0    0    0    0   0    0    0 0000 [[mar]]-> mdr   
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2    0    0   0   0    0    0    0    0    0    0   0 2600    0 0000 [mdr] -> ir     
+    3    0    0   0   0    0    0    0    0    0    0   0 2600 2600 0000 [pc]+1 -> q     
+    4    0    0   0   0    0    1    0    0    0    0   0 2600 2600 0000 [q] -> pc       
+   30    0    0   0   1    0    1    0    0    0    0   0 2600 2600 0000 none            
+   38    0    0   0   1    0    1    0    0    0    0   0 2600 2600 0000 [pc] -> mar     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   39    0    0   0   1    0    1    0    0    0    0   1 2600 2600 0000 [[mar]]->mdr    
+   40    0    0   0   1    0    1    0    0    0    0   1    2 2600 0000 [mdr]->t3       
+   41    0    0   0   1    0    1    0    2    0    0   1    2 2600 0000 [pc]+1->q       
+   42    0    0   0   1    0    2    0    2    0    0   1    2 2600 0000 [q]->pc         
+   70    0    0   0   2    0    2    0    2    0    0   1    2 2600 0000 none            
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   71    0    0   0   2    0    2    0    2    0    0   1    2 2600 0000 [rn]->t4        
+  100    0    0   0   2    0    2    0    2    0    0   1    2 2600 0000 none            
+  115    0    0   0   2    0    2    0    2    0    0   1    2 2600 0000 [t4]->t1        
+  116    0    0   0   2    0    2    0    2    0    0   1    2 2600 0000 [t1]-[t2]->q    
+  117    0    0   0   2    0    0    0    2    0    0   1    2 2600 1000 barrow check    
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  119    0    0   0   2    0    0    0    2    0    0   1    2 2600 1000 clrc            
+  290    0    0   0   2    0    0    0    2    0    0   1    2 2600 0000 writeback [q]->[
+  295    0    0   0   2    0    0    0    2    0    0   1    2 2600 0000 q->rn           
+   starting instruction 2
+    0    0    0   0   2    0    0    0    2    0    0   1    2 2600 0010 [pc]-> mar      
+    1    0    0   0   2    0    0    0    2    0    0   2    2 2600 0010 [[mar]]-> mdr   
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2    0    0   0   2    0    0    0    2    0    0   2 2511 2600 0010 [mdr] -> ir     
+    3    0    0   0   2    0    0    0    2    0    0   2 2511 2511 0010 [pc]+1 -> q     
+    4    0    0   0   2    0    3    0    2    0    0   2 2511 2511 0010 [q] -> pc       
+   30    0    0   0   3    0    3    0    2    0    0   2 2511 2511 0010 none            
+   38    0    0   0   3    0    3    0    2    0    0   2 2511 2511 0010 [pc] -> mar     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   39    0    0   0   3    0    3    0    2    0    0   3 2511 2511 0010 [[mar]]->mdr    
+   40    0    0   0   3    0    3    0    2    0    0   3  500 2511 0010 [mdr]->t3       
+   41    0    0   0   3    0    3    0  500    0    0   3  500 2511 0010 [pc]+1->q       
+   42    0    0   0   3    0    4    0  500    0    0   3  500 2511 0010 [q]->pc         
+   60    0    0   0   4    0    4    0  500    0    0   3  500 2511 0010 [t3]->mar       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   61    0    0   0   4    0    4    0  500    0    0 500  500 2511 0010 [[mar]]->mdr    
+  test 4 attempt to read from non-existant memory
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : ( 2600/  9728.)(    2/     2.)( 2511/  9489.)(  500/  1280.)
+     4/   4. : ( 2249/  8777.)(   60/    96.)( 2633/  9779.)(    4/     4.)
