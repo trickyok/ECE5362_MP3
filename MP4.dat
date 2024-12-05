@@ -5,13 +5,13 @@
 ***************************
 *** Start fetch cycle ***
  
- st=0 rt='[pc]-> mar'       		imar rac=1 rn=3
- st=1 rt='[[mar]]-> mdr'    		read
- st=2 rt='[mdr] -> ir'	    		omdr iir
- st=3 rt='[pc]+1 -> q'	    		rac=1 rn=3 ib p1 oadder
- st=4 rt='[q] -> pc'	    		oq wac=1 wn=3 
+ st=0 rt='[pc]-> mar'       			imar rac=1 rn=3
+ st=1 rt='[[mar]]-> mdr'    			read
+ st=2 rt='[mdr] -> ir'	    			omdr iir
+ st=3 rt='[pc]+1 -> q'	    			rac=1 rn=3 ib p1 oadder
+ st=4 rt='[q] -> pc'	    			oq wac=1 wn=3 
 	cond='ir158' value=0 nst=20
-	cond='ir1512' value=9 nst=70
+	cond='ir1512' value=0 nst=70
 	nst=30
 
 ****HALT execution Cycle*****
@@ -21,7 +21,6 @@
 ***Branch/Special Instructions ***
  st=20 rt='None'
 	cond='ir76' value=2 nst=21
-	cond='ir75' value=1 nst=420
 	nst=10
  st=21 rt='check RTS'
 	cond='ir64' value=0 nst=22
@@ -34,11 +33,14 @@
 	nst=170
 
 *** Double Operand: Read source ***
- st=30 rt='None'
+ st=30 		rt='None'
 	cond='ir108' value=0 nst=31
 	cond='ir108' value=1 nst=32
 	cond='ir108' value=2 nst=33
 	cond='ir108' value=3 nst=35
+	cond='ir108' value=4 nst=38
+	cond='ir108' value=5 nst=38
+	cond='ir108' value=6 nst=38
 
 ***SRC Register ***
  st= 31 rt='[Rn]->t2'				rac=2 it2
@@ -51,7 +53,7 @@
 
 
 ***SRC Autoincrement***
- st=33  rt='[Rn]->t3, [Rn]+1->q'	rac=2 it3 ib p1 oadder
+ st=33  rt='[Rn]->t3, [Rn]+1->q'		rac=2 it3 ib p1 oadder
  st=34  rt='[q]->Rn'				oq wac=2
 	nst=60
 
@@ -59,7 +61,7 @@
 ***SRC Autodecrement***
  st=35	rt='[Rn]-t1'				rac=2 it1
  st=36  rt='[t1]-1->[q]' 			oa comp oadder
- st=37  rt='[q]->Rn, [q]->t3' 		oq wac=2 it3
+ st=37  rt='[q]->Rn, [q]->t3' 			oq wac=2 it3
 	nst=60
 
 ***SRC AM:4/5/6*** next word
@@ -67,25 +69,26 @@
  st=39 rt='[[mar]]->mdr'			read
  st=40 rt='[mdr]->t3'				omdr it3
  st=41 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
- st=42 rt='[q]->pc'					oq wac=1 wn=3
-	cond='ir108' value=4 nst=44
-	cond='ir108' value=5 nst=60
-	cond='ir108' value=6 nst=47
+ st=42 rt='[q]->pc'				oq wac=1 wn=3
+	cond='ir108'	value=4 nst=44
+	cond='ir108'    value=5 nst=60
+	cond='ir108'    value=6 nst=70
  st=43 rt='src:invalid addrMode'
 	nst=10
 ***SRC AM:4:***
 
- st=44 rt='[t3]->t1'				ot3 it1
- st=45 rt='[t1]+[Rn]->q'			oa ib rac=2 oadder
- st=46 rt='[q]->t3'					oq it3
+ st=44 rt='[t3]->t1'	ot3 it1
+ st=45 rt='[t1]+[Rn]->q'	oa ib rac=2 oadder
+ st=46 rt='[q]->t3'		oq it3
 	nst=60
+
 ***SRC AM:6****
 ****EA is already in t3***
 
 ***SRC AM:6 Immediate***
- st=60 rt='[t3]->mar'				ot3 imar
- st=61 rt='[[mar]]->mdr' 			read
- st=62 rt='[mdr] -> t2'				omdr it2
+ st=60 rt='[t3]->mar'		ot3 imar
+ st=61 rt='[[mar]]->mdr' 	read
+ st=62 rt='[mdr] -> t2'		omdr it2
 	nst=70
 
 
@@ -95,7 +98,8 @@
 	cond='ir64' value=1 nst=72
 	cond='ir64' value=2 nst=73
 	cond='ir64' value=3 nst=75
-
+	cond='ir64' value=4 nst=78
+	cond='ir64' value=5 nst=78
 
 
 ****DST Register ****
@@ -110,7 +114,7 @@
 
 ****DST Autoincrement ****
  st=73 rt='[Rn]+1->q' 				rac=3 it5 ib p1 oadder
- st=74 rt='[q]->Rn'					oq wac=3
+ st=74 rt='[q]->Rn'				oq wac=3
 	nst=90
 
 
@@ -121,45 +125,45 @@
 	nst=90
 
 ***DST AM:4/5/6*** next word
- st=78 rt='[pc]-> mar' 				imar rac=1 rn=3
+ st=78 rt='[pc]-> mar' 			imar rac=1 rn=3
  st=79 rt='[[mar]]->mdr'			read
  st=80 rt='[mdr]->t5'				omdr it5
  st=81 rt='[pc]+1->q'				rac=1 rn=3 ib p1 oadder
  st=82 rt='[q]->pc'				oq wac=1 wn=3
-	cond='ir64' value=4 nst=84
-	cond='ir64' value=5 nst=90
+	cond='ir64'	value=4 nst=84
+	cond='ir64'     value=5 nst=90
  st=83 rt='dst:invalid addrMode'
 	nst=10
 
 ***DST AM:4 - Indexed***
- st=84 rt='[t5]->t1'				ot5 it1
- st=85 rt='[t1]+[Rn]->q'			oa ib rac=2 oadder
- st=86 rt='[q]->t5'				oq it5
+ st=84 rt='[t5]->t1'		ot5 it1
+ st=85 rt='[t1]+[Rn]->q'	oa ib rac=3 oadder
+ st=86 rt='[q]->t5'		oq it5
 	nst=90
 ***DST AM:6****
 
 ***Read Destination operand for AM:4/5***
- st=90 rt='[t5]->mar'				ot5 imar
- st=91 rt='[[mar]]->mdr' 			read
- st=92 rt='[mdr] -> t4'				omdr it4
+ st=90 rt='[t5]->mar'		ot5 imar
+ st=91 rt='[[mar]]->mdr' 	read
+ st=92 rt='[mdr] -> t4'		omdr it4
 	nst=100
 
 ***Test OpCode***
  st=100 rt='None'
 	cond='ir1512' value=1 nst=110
-	cond='ir1512' value=2 nst=115
-	cond='ir1512' value=3 nst=380
+	cond='ir1512' value=2 nst=115	
+	cond='ir1512' value=3 nst=169 
 	cond='ir1512' value=4 nst=130
-	cond='ir1512' value=5 nst=
-	cond='ir1512' value=6 nst=
-	cond='ir158'  value=1 nst=320
+	cond='ir1512' value=5 nst=162
+	cond='ir1512' value=6 nst=163
+	cond='ir158'  value=1 nst=183
 	cond='ir158'  value=2 nst=150
-	cond='ir158'  value=3 nst=400
+	cond='ir158'  value=3 nst=186
 	cond='ir158'  value=4 nst=140
-	cond='ir158'  value=5 nst=360
-	cond='ir158'  value=6 nst=340
+	cond='ir158'  value=5 nst=185
+	cond='ir158'  value=6 nst=182
 	cond='ir158'  value=7 nst=156
-	cond='ir158'  value=8 nst=
+	cond='ir158'  value=8 nst=151
  st=101 rt='unknown OP Code'
 	nst=10
 
@@ -173,13 +177,13 @@
  st=117 rt='barrow check'
  	cond='c' value=0 nst=118
 	cond='c' value=1 nst=119
- st=118 rt='setc'					setc
+ st=118 rt='setc'				setc
  	nst=290
- st=119 rt='clrc'					clrc
+ st=119 rt='clrc'				clrc
 	nst=290
 
 ***EXG***
- st=130 rt='t2->q'					ot2 ib oadder
+ st=130 rt='t2->q'				ot2 ib oadder
 
 ***Write DST to SRC***
  st=131 rt='None'
@@ -207,19 +211,36 @@
  st=140 rt='-[t4] -> q'				ot4 ib comp p1 oadder newv newc 
 	nst=290
 ***Op Code:INC***
- st=150 rt='[t4]+1->q'				ot4 ib p1 oadder newv newc
+ st=150 rt='[t4]+1-> q'				ot4 ib p1 oadder newv newc
 	nst=290
+***Op Code:TST***
+ st=151 rt='[t4]-0 -> q'			ot4 it1 oa oadder newz newn clrv clrc
+	nst=0
 
 ***Op Code: JSR***		
- st=156 rt='sp->t1'					rac=1 rn=2 it1
+ st=156 rt='sp->t1'				rac=1 rn=2 it1
  st=157 rt='t1-1->q'				oa comp oadder
  st=158 rt='q->sp,q->mar'			oq wac=1 wn=2 imar
  st=159 rt='pc->mdr'				rac=1 rn=3 imdr
- st=160 rt='write'					write
- st=161 rt='EA(t4)->pc'				ot5 wac=1 wn=3
+ st=160 rt='write'				write
+ st=161 rt='EA(t4)->pc'				ot4 wac=1 wn=3
 	nst=0
 
+***Op Code: OR***
+ st=162 rt='OR Operation -> q'			ot2 ot4 ib oadder
+	nst=290 
 
+***Op Code: AND***
+ st=163 rt='Comp[t2] -> q'				ot2 ib comp oadder newv newc
+ st=164 rt='q -> t2'				oq it2
+ st=165 rt='Comp[t4] -> q'				ot4 ib comp oadder newv newc
+ st=166 rt='q -> t4'				oq it4
+ st=167 rt='OR Operation -> q'			ot2 ot4 ib oadder
+ st=168 rt='Comp[q] -> q'				oq ib comp oadder newv newc
+	nst=290
+***Op Code: Move***
+ st=169 rt='[t2] -> [q]'			ot2 oq newn newz clrv clrc
+	nst=290
 
 *** Branch instructions ***
  st=170 rt='test ibrch'
@@ -231,36 +252,64 @@
 	cond='ir5'   value=0 nst=180
  	cond='ir5'   value=1 nst=173
 
- st=173 rt='PC->mar, PC->t1'		rac=1 rn=3 it1 imar
+ st=173 rt='PC->mar, PC->t1'			rac=1 rn=3 it1 imar
  st=174 rt='[[mar]]->mdr'			read
  st=175 rt='t1+1+mdr->q'			omdr oa ib p1 oadder
- st=176 rt='q->pc'					oq wac=1 wn=3
+ st=176 rt='q->pc'				oq wac=1 wn=3
 	nst=0
 
  st=180 rt='PC+1->q'				rac=1 rn=3 ib p1 oadder
- st=181 rt='q->PC'					oq wac=1 wn=3
+ st=181 rt='q->PC'				oq wac=1 wn=3
 	nst=0
 
+*** OpCode: Jump***
+ st=182 rt='EA(t4)->pc'				ot4 wac=1 wn=3
+	nst=0
 
+*** Op-Code: CLR ***
+ st=183 rt='0 + 0 = 0' 				oadder
+ st=184 rt='[q] -> t4'				oq clrc clrv newz newn it4
+ 	nst=0
+
+*** Op-Code: COMP ***
+ st=185 rt='[t4] -> b'				ot4 ib comp oadder newn newz clrv clrc  				 
+ 	nst=290
+
+*** Op-Code: DEC ***
+ st=186 rt='[t4]-1 -> q'			ot4 oa comp p1 oadder newn newz  
+	nst=290
 
 ********RTS**************
- st=200 rt='[sp]->mar,[sp]+1->q'	rac=1 rn=2 imar ib p1 oadder
+ st=200 rt='[sp]->mar,[sp]+1->q'		rac=1 rn=2 imar ib p1 oadder
  st=201 rt='[[mar]]->mdr'			read
  st=202 rt='[mdr]-> pc'				omdr wac=1 wn=3
- st=203 rt='q->sp'					oq wac=1 wn=2
+ st=203 rt='q->sp'				oq wac=1 wn=2
+
+********DBRA*************
+ st=204 rt='[t4]-1 -> q'			ot4 oa comp oadder
+ st=205 rt='[q] -> t1'				oq it1
+ st=206 rt='negative check'			p1 oa oadder newz newn
+ st=207 rt='negative check'
+	cond='cout' value=1 nst=0
+ st=208 rt='PC->mar, PC->t1'			rac=1 rn=3 it1 imar
+ st=209 rt='[[mar]]->mdr'			read
+ st=210 rt='t1+1+mdr->q'			omdr oa ib p1 oadder
+ st=211 rt='q->pc'				oq wac=1 wn=3		
+	nst=0	
 
 
-*****Write result to DST *****
+*****Write result to DST *****8
  st=290 rt='WriteBack [q]->[t5]'
 	cond='ir64' value=0 nst=295
 *---Addr mode 1-5: 6 is invalid for destination
  st=291 rt='[t5] -> mar'			ot5 imar
  st=292 rt='[q] -> mdr'				oq imdr newz newn
- st=293 rt='write'					write
+ st=293 rt='write'				write
 	nst=0
 
 *---Addr mode 0: Register
  st=295 rt='q->Rn'  				oq wac=3 newz newn
+	nst=0
 
 *---Write without changing CC's
  st=300 rt='WriteBack [q]->[t5]'
@@ -275,34 +324,8 @@
 	nst=0
 
 
-*** Op-Code: CLR ***
- st=320 rt='0 + 0 = 0' 				oadder
- st=321 rt='[q] -> t4'				oq clrc clrv newz newn it4
- 	nst=0
 
 
-*** Op-Code: JMP ***
- st=340 rt='[t4] -> PC'				ot4 wac=3
- 	nst=0
-
-
-*** Op-Code: COMP ***
- st=360 rt='[t4] -> b'				ot4 ib
- st=361	rt='!b'					comp oadder
- st=362 rt='[q] -> t4'				oq newn newz clrv clrc it4
- 	nst=0
-
-*** Op-Code: MOVE ***
- st=380 rt='[t2] -> t4'				ot2 newn newz clrv clrc it4
- 	nst=0
- 
-*** Op-Code: DEC ***
- st=400 rt='[t4] -> b'				ot4 ib
- st=401 rt='!b + 1'				comp p1 oadder	
- st=402 rt='[q] -> b'				oq ib
- st=403 rt='!b -> q'				comp oadder
- st=404 rt='[q] -> t4'				oq it4
- 	nst=0		
 
 *** Op-Code: SC/CC ***
  st=420 rt='none'
