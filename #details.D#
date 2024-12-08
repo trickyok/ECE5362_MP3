@@ -1,0 +1,41 @@
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : (  A00/  2560.)(  500/  1280.)(  400/  1024.)(  500/  1280.)
+     4/   4. : (   28/    40.)(   22/    34.)(   31/    49.)(   32/    50.)
+     8/   8. : (   34/    52.)(   38/    56.)(    0/     0.)(    0/     0.)
+ state is decimal format; registers are hex 
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   starting instruction 1
+    0    4 FFFF   0   0    0    0    0    0    0    0   0    0    0 1010 [pc]-> mar      
+    1    4 FFFF   0   0    0    0    0    0    0    0   0    0    0 1010 [[mar]]-> mdr   
+    2    4 FFFF   0   0    0    0    0    0    0    0   0  A00    0 1010 [mdr] -> ir     
+    3    4 FFFF   0   0    0    0    0    0    0    0   0  A00  A00 1010 [pc]+1 -> q     
+    4    4 FFFF   0   0    0    1    0    0    0    0   0  A00  A00 1010 [q] -> pc       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   70    4 FFFF   0   1    0    1    0    0    0    0   0  A00  A00 1010 none            
+   71    4 FFFF   0   1    0    1    0    0    0    0   0  A00  A00 1010 [rn]->t4        
+  100    4 FFFF   0   1    0    1    0    0    4    0   0  A00  A00 1010 none            
+  204    4 FFFF   0   1    0    1    0    0    4    0   0  A00  A00 1010 [t4]-1 -> q     
+  205    4 FFFF   0   1    0 FFFF    0    0    4    0   0  A00  A00 1010 [q] -> t1       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  206    4 FFFF   0   1 FFFF FFFF
+  0    0    4    0   0  A00  A00 1010 negative check  
+  207    4 FFFF   0   1 FFFF    0    0    0    4    0   0  A00  A00 1010 negative check  
+  208    4 FFFF   0   1 FFFF    0    0    0    4    0   0  A00  A00 1010 pc->mar, pc->t1 
+  209    4 FFFF   0   1    1    0    0    0    4    0   1  A00  A00 1010 [[mar]]->mdr    
+  210    4 FFFF   0   1    1    0    0    0    4    0   1  500  A00 1010 t1+1+mdr->q     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  211    4 FFFF   0   1    1  502    0    0    4    0   1  500  A00 1010 q->pc           
+   starting instruction 2
+    0    4 FFFF   0 502    1  502    0    0    4    0   1  500  A00 1010 [pc]-> mar      
+    1    4 FFFF   0 502    1  502    0    0    4    0 502  500  A00 1010 [[mar]]-> mdr   
+  test D attempt to read from non-existant memory
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : (  A00/  2560.)(  500/  1280.)(  400/  1024.)(  500/  1280.)
+     4/   4. : (   28/    40.)(   22/    34.)(   31/    49.)(   32/    50.)
+     8/   8. : (   34/    52.)(   38/    56.)(    0/     0.)(    0/     0.)

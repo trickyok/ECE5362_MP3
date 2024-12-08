@@ -3,137 +3,138 @@
      0/   0. : (  200/   512.)(   91/   145.)(    1/     1.)( 1001/  4097.)
      4/   4. : (  200/   512.)(   9A/   154.)( FFFD/    -3.)(  201/   513.)
  state is decimal format; registers are hex 
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    starting instruction 1
     0 FFFE FFFF   6   0    0    0    0    0    0    0   0    0    0 0100 [pc]-> mar      
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     1 FFFE FFFF   6   0    0    0    0    0    0    0   0    0    0 0100 [[mar]]-> mdr   
     2 FFFE FFFF   6   0    0    0    0    0    0    0   0  200    0 0100 [mdr] -> ir     
     3 FFFE FFFF   6   0    0    0    0    0    0    0   0  200  200 0100 [pc]+1 -> q     
     4 FFFE FFFF   6   0    0    1    0    0    0    0   0  200  200 0100 [q] -> pc       
+   70 FFFE FFFF   6   1    0    1    0    0    0    0   0  200  200 0100 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-   70 FFFE FFFF   6   1    0    1    0    0    0    0   0  200  200 0100 none            
    71 FFFE FFFF   6   1    0    1    0    0    0    0   0  200  200 0100 [rn]->t4        
   100 FFFE FFFF   6   1    0    1    0    0 FFFE    0   0  200  200 0100 none            
   150 FFFE FFFF   6   1    0    1    0    0 FFFE    0   0  200  200 0100 [t4]+1-> q      
   290 FFFE FFFF   6   1    0 FFFF    0    0 FFFE    0   0  200  200 0000 writeback [q]->[
+  295 FFFE FFFF   6   1    0 FFFF    0    0 FFFE    0   0  200  200 0000 q->rn           
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-  295 FFFE FFFF   6   1    0 FFFF    0    0 FFFE    0   0  200  200 0000 q->rn           
    starting instruction 2
     0 FFFF FFFF   6   1    0 FFFF    0    0 FFFE    0   0  200  200 0001 [pc]-> mar      
     1 FFFF FFFF   6   1    0 FFFF    0    0 FFFE    0   1  200  200 0001 [[mar]]-> mdr   
     2 FFFF FFFF   6   1    0 FFFF    0    0 FFFE    0   1   91  200 0001 [mdr] -> ir     
     3 FFFF FFFF   6   1    0 FFFF    0    0 FFFE    0   1   91   91 0001 [pc]+1 -> q     
+    4 FFFF FFFF   6   1    0    2    0    0 FFFE    0   1   91   91 0001 [q] -> pc       
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-    4 FFFF FFFF   6   1    0    2    0    0 FFFE    0   1   91   91 0001 [q] -> pc       
    20 FFFF FFFF   6   2    0    2    0    0 FFFE    0   1   91   91 0001 none            
    21 FFFF FFFF   6   2    0    2    0    0 FFFE    0   1   91   91 0001 check rts       
   170 FFFF FFFF   6   2    0    2    0    0 FFFE    0   1   91   91 0001 test ibrch      
   171 FFFF FFFF   6   2    0    2    0    0 FFFE    0   1   91   91 0001 ibrch=1 xor ir5 
+  173 FFFF FFFF   6   2    0    2    0    0 FFFE    0   1   91   91 0001 pc->mar, pc->t1 
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-  173 FFFF FFFF   6   2    0    2    0    0 FFFE    0   1   91   91 0001 pc->mar, pc->t1 
   174 FFFF FFFF   6   2    2    2    0    0 FFFE    0   2   91   91 0001 [[mar]]->mdr    
   175 FFFF FFFF   6   2    2    2    0    0 FFFE    0   2    1   91 0001 t1+1+mdr->q     
   176 FFFF FFFF   6   2    2    4    0    0 FFFE    0   2    1   91 0001 q->pc           
    starting instruction 3
     0 FFFF FFFF   6   4    2    4    0    0 FFFE    0   2    1   91 0001 [pc]-> mar      
+    1 FFFF FFFF   6   4    2    4    0    0 FFFE    0   4    1   91 0001 [[mar]]-> mdr   
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-    1 FFFF FFFF   6   4    2    4    0    0 FFFE    0   4    1   91 0001 [[mar]]-> mdr   
     2 FFFF FFFF   6   4    2    4    0    0 FFFE    0   4  200   91 0001 [mdr] -> ir     
     3 FFFF FFFF   6   4    2    4    0    0 FFFE    0   4  200  200 0001 [pc]+1 -> q     
     4 FFFF FFFF   6   4    2    5    0    0 FFFE    0   4  200  200 0001 [q] -> pc       
    70 FFFF FFFF   6   5    2    5    0    0 FFFE    0   4  200  200 0001 none            
+   71 FFFF FFFF   6   5    2    5    0    0 FFFE    0   4  200  200 0001 [rn]->t4        
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-   71 FFFF FFFF   6   5    2    5    0    0 FFFE    0   4  200  200 0001 [rn]->t4        
   100 FFFF FFFF   6   5    2    5    0    0 FFFF    0   4  200  200 0001 none            
   150 FFFF FFFF   6   5    2    5    0    0 FFFF    0   4  200  200 0001 [t4]+1-> q      
   290 FFFF FFFF   6   5    2    0    0    0 FFFF    0   4  200  200 1001 writeback [q]->[
   295 FFFF FFFF   6   5    2    0    0    0 FFFF    0   4  200  200 1001 q->rn           
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    starting instruction 4
     0    0 FFFF   6   5    2    0    0    0 FFFF    0   4  200  200 1010 [pc]-> mar      
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     1    0 FFFF   6   5    2    0    0    0 FFFF    0   5  200  200 1010 [[mar]]-> mdr   
     2    0 FFFF   6   5    2    0    0    0 FFFF    0   5   9A  200 1010 [mdr] -> ir     
     3    0 FFFF   6   5    2    0    0    0 FFFF    0   5   9A   9A 1010 [pc]+1 -> q     
     4    0 FFFF   6   5    2    6    0    0 FFFF    0   5   9A   9A 1010 [q] -> pc       
+   20    0 FFFF   6   6    2    6    0    0 FFFF    0   5   9A   9A 1010 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-   20    0 FFFF   6   6    2    6    0    0 FFFF    0   5   9A   9A 1010 none            
    21    0 FFFF   6   6    2    6    0    0 FFFF    0   5   9A   9A 1010 check rts       
   170    0 FFFF   6   6    2    6    0    0 FFFF    0   5   9A   9A 1010 test ibrch      
   171    0 FFFF   6   6    2    6    0    0 FFFF    0   5   9A   9A 1010 ibrch=1 xor ir5 
   173    0 FFFF   6   6    2    6    0    0 FFFF    0   5   9A   9A 1010 pc->mar, pc->t1 
+  174    0 FFFF   6   6    6    6    0    0 FFFF    0   6   9A   9A 1010 [[mar]]->mdr    
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-  174    0 FFFF   6   6    6    6    0    0 FFFF    0   6   9A   9A 1010 [[mar]]->mdr    
   175    0 FFFF   6   6    6    6    0    0 FFFF    0   6 FFFD   9A 1010 t1+1+mdr->q     
   176    0 FFFF   6   6    6    4    0    0 FFFF    0   6 FFFD   9A 1010 q->pc           
    starting instruction 5
     0    0 FFFF   6   4    6    4    0    0 FFFF    0   6 FFFD   9A 1010 [pc]-> mar      
     1    0 FFFF   6   4    6    4    0    0 FFFF    0   4 FFFD   9A 1010 [[mar]]-> mdr   
+    2    0 FFFF   6   4    6    4    0    0 FFFF    0   4  200   9A 1010 [mdr] -> ir     
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-    2    0 FFFF   6   4    6    4    0    0 FFFF    0   4  200   9A 1010 [mdr] -> ir     
     3    0 FFFF   6   4    6    4    0    0 FFFF    0   4  200  200 1010 [pc]+1 -> q     
     4    0 FFFF   6   4    6    5    0    0 FFFF    0   4  200  200 1010 [q] -> pc       
    70    0 FFFF   6   5    6    5    0    0 FFFF    0   4  200  200 1010 none            
    71    0 FFFF   6   5    6    5    0    0 FFFF    0   4  200  200 1010 [rn]->t4        
+  100    0 FFFF   6   5    6    5    0    0    0    0   4  200  200 1010 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-  100    0 FFFF   6   5    6    5    0    0    0    0   4  200  200 1010 none            
   150    0 FFFF   6   5    6    5    0    0    0    0   4  200  200 1010 [t4]+1-> q      
   290    0 FFFF   6   5    6    1    0    0    0    0   4  200  200 0010 writeback [q]->[
   295    0 FFFF   6   5    6    1    0    0    0    0   4  200  200 0010 q->rn           
    starting instruction 6
     0    1 FFFF   6   5    6    1    0    0    0    0   4  200  200 0000 [pc]-> mar      
+    1    1 FFFF   6   5    6    1    0    0    0    0   5  200  200 0000 [[mar]]-> mdr   
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-    1    1 FFFF   6   5    6    1    0    0    0    0   5  200  200 0000 [[mar]]-> mdr   
     2    1 FFFF   6   5    6    1    0    0    0    0   5   9A  200 0000 [mdr] -> ir     
     3    1 FFFF   6   5    6    1    0    0    0    0   5   9A   9A 0000 [pc]+1 -> q     
     4    1 FFFF   6   5    6    6    0    0    0    0   5   9A   9A 0000 [q] -> pc       
    20    1 FFFF   6   6    6    6    0    0    0    0   5   9A   9A 0000 none            
+   21    1 FFFF   6   6    6    6    0    0    0    0   5   9A   9A 0000 check rts       
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-   21    1 FFFF   6   6    6    6    0    0    0    0   5   9A   9A 0000 check rts       
   170    1 FFFF   6   6    6    6    0    0    0    0   5   9A   9A 0000 test ibrch      
   172    1 FFFF   6   6    6    6    0    0    0    0   5   9A   9A 0000 ibrch=0 xor ir5 
   180    1 FFFF   6   6    6    6    0    0    0    0   5   9A   9A 0000 pc+1->q         
   181    1 FFFF   6   6    6    7    0    0    0    0   5   9A   9A 0000 q->pc           
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    starting instruction 7
     0    1 FFFF   6   7    6    7    0    0    0    0   5   9A   9A 0000 [pc]-> mar      
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     1    1 FFFF   6   7    6    7    0    0    0    0   7   9A   9A 0000 [[mar]]-> mdr   
     2    1 FFFF   6   7    6    7    0    0    0    0   7  201   9A 0000 [mdr] -> ir     
     3    1 FFFF   6   7    6    7    0    0    0    0   7  201  201 0000 [pc]+1 -> q     
     4    1 FFFF   6   7    6    8    0    0    0    0   7  201  201 0000 [q] -> pc       
+   70    1 FFFF   6   8    6    8    0    0    0    0   7  201  201 0000 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-   70    1 FFFF   6   8    6    8    0    0    0    0   7  201  201 0000 none            
    71    1 FFFF   6   8    6    8    0    0    0    0   7  201  201 0000 [rn]->t4        
   100    1 FFFF   6   8    6    8    0    0 FFFF    0   7  201  201 0000 none            
   150    1 FFFF   6   8    6    8    0    0 FFFF    0   7  201  201 0000 [t4]+1-> q      
   290    1 FFFF   6   8    6    0    0    0 FFFF    0   7  201  201 1000 writeback [q]->[
+  295    1 FFFF   6   8    6    0    0    0 FFFF    0   7  201  201 1000 q->rn           
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-  295    1 FFFF   6   8    6    0    0    0 FFFF    0   7  201  201 1000 q->rn           
    starting instruction 8
     0    1    0   6   8    6    0    0    0 FFFF    0   7  201  201 1010 [pc]-> mar      
     1    1    0   6   8    6    0    0    0 FFFF    0   8  201  201 1010 [[mar]]-> mdr   
     2    1    0   6   8    6    0    0    0 FFFF    0   8    0  201 1010 [mdr] -> ir     
     3    1    0   6   8    6    0    0    0 FFFF    0   8    0    0 1010 [pc]+1 -> q     
+    4    1    0   6   8    6    9    0    0 FFFF    0   8    0    0 1010 [q] -> pc       
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-    4    1    0   6   8    6    9    0    0 FFFF    0   8    0    0 1010 [q] -> pc       
    20    1    0   6   9    6    9    0    0 FFFF    0   8    0    0 1010 none            
+   24    1    0   6   9    6    9    0    0 FFFF    0   8    0    0 1010 check set/clr   
    10    1    0   6   9    6    9    0    0 FFFF    0   8    0    0 1010 --              
   test A: Halt instruction executed 
   Hex/Decimal memory dump (least significant word on left)

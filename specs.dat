@@ -21,7 +21,7 @@
 ***Branch/Special Instructions ***
  st=20 rt='None'
 	cond='ir76' value=2 nst=21
-	nst=10
+	nst=24
  st=21 rt='check RTS'
 	cond='ir64' value=0 nst=22
 	nst=170
@@ -31,6 +31,10 @@
  st=23 rt='check RTS'
 	cond='ir0' value=0 nst=200
 	nst=170
+ st=24 rt='check SET/CLR'
+	 cond='ir75'  value=1 nst=420
+	 nst=10
+  
 
 *** Double Operand: Read source ***
  st=30 		rt='None'
@@ -164,6 +168,7 @@
 	cond='ir158'  value=6 nst=182
 	cond='ir158'  value=7 nst=156
 	cond='ir158'  value=8 nst=151
+	cond='ir158'  value=10 nst=204
  st=101 rt='unknown OP Code'
 	nst=10
 
@@ -324,9 +329,6 @@
 	nst=0
 
 
-
-
-
 *** Op-Code: SC/CC ***
  st=420 rt='none'
 	cond='ir3' value=1 nst=421
@@ -347,19 +349,21 @@
 	nst=0
  st=427 rt='z'
 	cond='ir4' value=1 nst=430
- st=428 rt='0->q'				oadder
- st=429 rt='[q]-> t5 (clr z)'			oq newz it5
+ st=428 rt='1->q'				p1 oadder
+ st=429 rt='[q]-> bus (clr z)'			oq newz
 	nst=0
- st=430 rt='1 -> q'				p1 oadder
- st=431 rt='[q] -> t5 (set z)'			oq newz it5
+ st=430 rt='0 -> q'				oadder
+ st=431 rt='[q] -> bus (set z)'			oq newz
 	nst=0
  st=432 rt='n'
 	cond='ir4' value=1 nst=435
  st=433 rt='0->q'				oadder
- st=434 rt='[q]-> t5 (clr n)'			oq newn it5
+ st=434 rt='[q]-> bus (clr n)'			oq newn
 	nst=0
  st=435 rt='1 -> q'				p1 oadder
- st=436 rt='[q] -> t5 (set n)'			oq newn it5
+ st=436 rt='[q] -> b'				oq ib
+ st=437 rt='-1 -> q'				comp oadder
+ st=438 rt='[q] -> bus (set n)'			oq newn
 	nst=0
 
 

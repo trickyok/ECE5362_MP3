@@ -186,10 +186,34 @@ start COMP test
 FFFF X
 0000 SP
 0000 PC
+0000 CVZN
 0501 comp x
 0501 comp x
 0500 comp ac
 0500 comp ac
 0510 comp [ac]
 end COMP test
-**************
+***************
+start DBRASC test
+0004 AC
+FFFF X
+0000 SP
+0000 PC
+1111 CVZN
+0A00 DBRA AC
+0004 
+0A01 DBRA X
+0501 COMP X
+0401 NEG X
+0501 COMP X
+0031 SET N
+0028 CLR C
+0024 CLR V
+0022 CLR Z
+0021 CLR N
+0031 SET N
+0032 SET Z
+0034 SET V
+0038 SET C
+end DBRASC test
+***************

@@ -6,118 +6,119 @@
  state is decimal format; registers are hex 
    starting instruction 1
     0 A004 EEED   7   1    0    0    0    0    0    0   0    0    0 0000 [pc]-> mar      
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     1 A004 EEED   7   1    0    0    0    0    0    0   1    0    0 0000 [[mar]]-> mdr   
     2 A004 EEED   7   1    0    0    0    0    0    0   1 4012    0 0000 [mdr] -> ir     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     3 A004 EEED   7   1    0    0    0    0    0    0   1 4012 4012 0000 [pc]+1 -> q     
     4 A004 EEED   7   1    0    2    0    0    0    0   1 4012 4012 0000 [q] -> pc       
    30 A004 EEED   7   2    0    2    0    0    0    0   1 4012 4012 0000 none            
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    31 A004 EEED   7   2    0    2    0    0    0    0   1 4012 4012 0000 [rn]->t2        
    70 A004 EEED   7   2    0    2 A004    0    0    0   1 4012 4012 0000 none            
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    72 A004 EEED   7   2    0    2 A004    0    0    0   1 4012 4012 0000 [rn]->t5        
    90 A004 EEED   7   2    0    2 A004    0    0    7   1 4012 4012 0000 [t5]->mar       
    91 A004 EEED   7   2    0    2 A004    0    0    7   7 4012 4012 0000 [[mar]]->mdr    
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    92 A004 EEED   7   2    0    2 A004    0    0    7   7 DCBA 4012 0000 [mdr] -> t4     
   100 A004 EEED   7   2    0    2 A004    0 DCBA    7   7 DCBA 4012 0000 none            
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   130 A004 EEED   7   2    0    2 A004    0 DCBA    7   7 DCBA 4012 0000 t2->q           
   131 A004 EEED   7   2    0 A004 A004    0 DCBA    7   7 DCBA 4012 0000 none            
   133 A004 EEED   7   2    0 A004 A004    0 DCBA    7   7 DCBA 4012 0000 [t4]->rn        
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   300 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   7 DCBA 4012 0000 writeback [q]->[
   301 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   7 DCBA 4012 0000 [t5] -> mar     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   302 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   7 DCBA 4012 0000 [q] -> mdr      
   303 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   7 A004 4012 0000 write           
    starting instruction 2
     0 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   7 A004 4012 0000 [pc]-> mar      
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     1 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   2 A004 4012 0000 [[mar]]-> mdr   
     2 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   2 5008 4012 0000 [mdr] -> ir     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     3 DCBA EEED   7   2    0 A004 A004    0 DCBA    7   2 5008 5008 0000 [pc]+1 -> q     
     4 DCBA EEED   7   2    0    3 A004    0 DCBA    7   2 5008 5008 0000 [q] -> pc       
    30 DCBA EEED   7   3    0    3 A004    0 DCBA    7   2 5008 5008 0000 none            
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    31 DCBA EEED   7   3    0    3 A004    0 DCBA    7   2 5008 5008 0000 [rn]->t2        
    70 DCBA EEED   7   3    0    3    7    0 DCBA    7   2 5008 5008 0000 none            
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    71 DCBA EEED   7   3    0    3    7    0 DCBA    7   2 5008 5008 0000 [rn]->t4        
   100 DCBA EEED   7   3    0    3    7    0 DCBA    7   2 5008 5008 0000 none            
   162 DCBA EEED   7   3    0    3    7    0 DCBA    7   2 5008 5008 0000 or operation -> 
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   290 DCBA EEED   7   3    0 DCBF    7    0 DCBA    7   2 5008 5008 0000 writeback [q]->[
   295 DCBA EEED   7   3    0 DCBF    7    0 DCBA    7   2 5008 5008 0000 q->rn           
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    starting instruction 3
     0 DCBF EEED   7   3    0 DCBF    7    0 DCBA    7   2 5008 5008 0001 [pc]-> mar      
     1 DCBF EEED   7   3    0 DCBF    7    0 DCBA    7   3 5008 5008 0001 [[mar]]-> mdr   
     2 DCBF EEED   7   3    0 DCBF    7    0 DCBA    7   3 5500 5008 0001 [mdr] -> ir     
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     3 DCBF EEED   7   3    0 DCBF    7    0 DCBA    7   3 5500 5500 0001 [pc]+1 -> q     
     4 DCBF EEED   7   3    0    4    7    0 DCBA    7   3 5500 5500 0001 [q] -> pc       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    30 DCBF EEED   7   4    0    4    7    0 DCBA    7   3 5500 5500 0001 none            
    38 DCBF EEED   7   4    0    4    7    0 DCBA    7   3 5500 5500 0001 [pc] -> mar     
    39 DCBF EEED   7   4    0    4    7    0 DCBA    7   4 5500 5500 0001 [[mar]]->mdr    
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    40 DCBF EEED   7   4    0    4    7    0 DCBA    7   4    7 5500 0001 [mdr]->t3       
    41 DCBF EEED   7   4    0    4    7    7 DCBA    7   4    7 5500 0001 [pc]+1->q       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    42 DCBF EEED   7   4    0    5    7    7 DCBA    7   4    7 5500 0001 [q]->pc         
    60 DCBF EEED   7   5    0    5    7    7 DCBA    7   4    7 5500 0001 [t3]->mar       
    61 DCBF EEED   7   5    0    5    7    7 DCBA    7   7    7 5500 0001 [[mar]]->mdr    
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    62 DCBF EEED   7   5    0    5    7    7 DCBA    7   7 A004 5500 0001 [mdr] -> t2     
    70 DCBF EEED   7   5    0    5 A004    7 DCBA    7   7 A004 5500 0001 none            
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    71 DCBF EEED   7   5    0    5 A004    7 DCBA    7   7 A004 5500 0001 [rn]->t4        
   100 DCBF EEED   7   5    0    5 A004    7 DCBF    7   7 A004 5500 0001 none            
   162 DCBF EEED   7   5    0    5 A004    7 DCBF    7   7 A004 5500 0001 or operation -> 
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   290 DCBF EEED   7   5    0 FCBF A004    7 DCBF    7   7 A004 5500 0001 writeback [q]->[
   295 DCBF EEED   7   5    0 FCBF A004    7 DCBF    7   7 A004 5500 0001 q->rn           
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    starting instruction 4
     0 FCBF EEED   7   5    0 FCBF A004    7 DCBF    7   7 A004 5500 0001 [pc]-> mar      
     1 FCBF EEED   7   5    0 FCBF A004    7 DCBF    7   5 A004 5500 0001 [[mar]]-> mdr   
     2 FCBF EEED   7   5    0 FCBF A004    7 DCBF    7   5 6004 5500 0001 [mdr] -> ir     
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     3 FCBF EEED   7   5    0 FCBF A004    7 DCBF    7   5 6004 6004 0001 [pc]+1 -> q     
     4 FCBF EEED   7   5    0    6 A004    7 DCBF    7   5 6004 6004 0001 [q] -> pc       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    30 FCBF EEED   7   6    0    6 A004    7 DCBF    7   5 6004 6004 0001 none            
    31 FCBF EEED   7   6    0    6 A004    7 DCBF    7   5 6004 6004 0001 [rn]->t2        
    70 FCBF EEED   7   6    0    6 EEED    7 DCBF    7   5 6004 6004 0001 none            
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    71 FCBF EEED   7   6    0    6 EEED    7 DCBF    7   5 6004 6004 0001 [rn]->t4        
   100 FCBF EEED   7   6    0    6 EEED    7 FCBF    7   5 6004 6004 0001 none            
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   163 FCBF EEED   7   6    0    6 EEED    7 FCBF    7   5 6004 6004 0001 comp[t2] -> q   
   164 FCBF EEED   7   6    0 1112 EEED    7 FCBF    7   5 6004 6004 0001 q -> t2         
   165 FCBF EEED   7   6    0 1112 1112    7 FCBF    7   5 6004 6004 0001 comp[t4] -> q   
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   166 FCBF EEED   7   6    0  340 1112    7 FCBF    7   5 6004 6004 0001 q -> t4         
   167 FCBF EEED   7   6    0  340 1112    7  340    7   5 6004 6004 0001 or operation -> 
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
   168 FCBF EEED   7   6    0 1352 1112    7  340    7   5 6004 6004 0001 comp[q] -> q    
   290 FCBF EEED   7   6    0 ECAD 1112    7  340    7   5 6004 6004 0001 writeback [q]->[
   295 FCBF EEED   7   6    0 ECAD 1112    7  340    7   5 6004 6004 0001 q->rn           
-
-   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
    starting instruction 5
     0 ECAD EEED   7   6    0 ECAD 1112    7  340    7   5 6004 6004 0001 [pc]-> mar      
     1 ECAD EEED   7   6    0 ECAD 1112    7  340    7   6 6004 6004 0001 [[mar]]-> mdr   
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
     2 ECAD EEED   7   6    0 ECAD 1112    7  340    7   6    0 6004 0001 [mdr] -> ir     
     3 ECAD EEED   7   6    0 ECAD 1112    7  340    7   6    0    0 0001 [pc]+1 -> q     
     4 ECAD EEED   7   6    0    7 1112    7  340    7   6    0    0 0001 [q] -> pc       
+   20 ECAD EEED   7   7    0    7 1112    7  340    7   6    0    0 0001 none            
+   24 ECAD EEED   7   7    0    7 1112    7  340    7   6    0    0 0001 check set/clr   
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
-   20 ECAD EEED   7   7    0    7 1112    7  340    7   6    0    0 0001 none            
    10 ECAD EEED   7   7    0    7 1112    7  340    7   6    0    0 0001 --              
   test 8: Halt instruction executed 
   Hex/Decimal memory dump (least significant word on left)

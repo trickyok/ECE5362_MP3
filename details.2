@@ -7,67 +7,67 @@
    starting instruction 1
     0    0    2 100   0    0    0    0    0    0    0   0    0    0 0000 [pc]-> mar      
     1    0    2 100   0    0    0    0    0    0    0   0    0    0 0000 [[mar]]-> mdr   
-    2    0    2 100   0    0    0    0    0    0    0   0  400    0 0000 [mdr] -> ir     
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2    0    2 100   0    0    0    0    0    0    0   0  400    0 0000 [mdr] -> ir     
     3    0    2 100   0    0    0    0    0    0    0   0  400  400 0000 [pc]+1 -> q     
     4    0    2 100   0    0    1    0    0    0    0   0  400  400 0000 [q] -> pc       
    70    0    2 100   1    0    1    0    0    0    0   0  400  400 0000 none            
    71    0    2 100   1    0    1    0    0    0    0   0  400  400 0000 [rn]->t4        
-  100    0    2 100   1    0    1    0    0    0    0   0  400  400 0000 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  100    0    2 100   1    0    1    0    0    0    0   0  400  400 0000 none            
   140    0    2 100   1    0    1    0    0    0    0   0  400  400 0000 -[t4] -> q      
   290    0    2 100   1    0    0    0    0    0    0   0  400  400 1000 writeback [q]->[
   295    0    2 100   1    0    0    0    0    0    0   0  400  400 1000 q->rn           
    starting instruction 2
     0    0    2 100   1    0    0    0    0    0    0   0  400  400 1010 [pc]-> mar      
-    1    0    2 100   1    0    0    0    0    0    0   1  400  400 1010 [[mar]]-> mdr   
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    1    0    2 100   1    0    0    0    0    0    0   1  400  400 1010 [[mar]]-> mdr   
     2    0    2 100   1    0    0    0    0    0    0   1  411  400 1010 [mdr] -> ir     
     3    0    2 100   1    0    0    0    0    0    0   1  411  411 1010 [pc]+1 -> q     
     4    0    2 100   1    0    2    0    0    0    0   1  411  411 1010 [q] -> pc       
    70    0    2 100   2    0    2    0    0    0    0   1  411  411 1010 none            
-   72    0    2 100   2    0    2    0    0    0    0   1  411  411 1010 [rn]->t5        
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   72    0    2 100   2    0    2    0    0    0    0   1  411  411 1010 [rn]->t5        
    90    0    2 100   2    0    2    0    0    0    2   1  411  411 1010 [t5]->mar       
    91    0    2 100   2    0    2    0    0    0    2   2  411  411 1010 [[mar]]->mdr    
    92    0    2 100   2    0    2    0    0    0    2   2  422  411 1010 [mdr] -> t4     
   100    0    2 100   2    0    2    0    0  422    2   2  422  411 1010 none            
-  140    0    2 100   2    0    2    0    0  422    2   2  422  411 1010 -[t4] -> q      
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  140    0    2 100   2    0    2    0    0  422    2   2  422  411 1010 -[t4] -> q      
   290    0    2 100   2    0 FBDE    0    0  422    2   2  422  411 0010 writeback [q]->[
   291    0    2 100   2    0 FBDE    0    0  422    2   2  422  411 0010 [t5] -> mar     
   292    0    2 100   2    0 FBDE    0    0  422    2   2  422  411 0010 [q] -> mdr      
   293    0    2 100   2    0 FBDE    0    0  422    2   2 FBDE  411 0001 write           
-   starting instruction 3
-    0    0    2 100   2    0 FBDE    0    0  422    2   2 FBDE  411 0001 [pc]-> mar      
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   starting instruction 3
+    0    0    2 100   2    0 FBDE    0    0  422    2   2 FBDE  411 0001 [pc]-> mar      
     1    0    2 100   2    0 FBDE    0    0  422    2   2 FBDE  411 0001 [[mar]]-> mdr   
     2    0    2 100   2    0 FBDE    0    0  422    2   2 FBDE  411 0001 [mdr] -> ir     
     3    0    2 100   2    0 FBDE    0    0  422    2   2 FBDE FBDE 0001 [pc]+1 -> q     
     4    0    2 100   2    0    3    0    0  422    2   2 FBDE FBDE 0001 [q] -> pc       
-   30    0    2 100   3    0    3    0    0  422    2   2 FBDE FBDE 0001 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   30    0    2 100   3    0    3    0    0  422    2   2 FBDE FBDE 0001 none            
    35    0    2 100   3    0    3    0    0  422    2   2 FBDE FBDE 0001 [rn]-t1         
    36    0    2 100   3    3    3    0    0  422    2   2 FBDE FBDE 0001 [t1]-1->[q]     
    37    0    2 100   3    3    2    0    0  422    2   2 FBDE FBDE 0001 [q]->rn, [q]->t3
    60    0    2 100   2    3    2    0    2  422    2   2 FBDE FBDE 0001 [t3]->mar       
-   61    0    2 100   2    3    2    0    2  422    2   2 FBDE FBDE 0001 [[mar]]->mdr    
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   61    0    2 100   2    3    2    0    2  422    2   2 FBDE FBDE 0001 [[mar]]->mdr    
    62    0    2 100   2    3    2    0    2  422    2   2 FBDE FBDE 0001 [mdr] -> t2     
    70    0    2 100   2    3    2 FBDE    2  422    2   2 FBDE FBDE 0001 none            
    78    0    2 100   2    3    2 FBDE    2  422    2   2 FBDE FBDE 0001 [pc]-> mar      
    79    0    2 100   2    3    2 FBDE    2  422    2   2 FBDE FBDE 0001 [[mar]]->mdr    
-   80    0    2 100   2    3    2 FBDE    2  422    2   2 FBDE FBDE 0001 [mdr]->t5       
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   80    0    2 100   2    3    2 FBDE    2  422    2   2 FBDE FBDE 0001 [mdr]->t5       
    81    0    2 100   2    3    2 FBDE    2  422 FBDE   2 FBDE FBDE 0001 [pc]+1->q       
    82    0    2 100   2    3    3 FBDE    2  422 FBDE   2 FBDE FBDE 0001 [q]->pc         
    90    0    2 100   3    3    3 FBDE    2  422 FBDE   2 FBDE FBDE 0001 [t5]->mar       

@@ -118,6 +118,7 @@
    20 ABCD FFFD   8   7    0    7    2    7 5432    8   6    0    0 0001 none            
 
    st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   24 ABCD FFFD   8   7    0    7    2    7 5432    8   6    0    0 0001 check set/clr   
    10 ABCD FFFD   8   7    0    7    2    7 5432    8   6    0    0 0001 --              
   test B: Halt instruction executed 
   Hex/Decimal memory dump (least significant word on left)
