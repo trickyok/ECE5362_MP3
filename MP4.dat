@@ -21,7 +21,7 @@
 ***Branch/Special Instructions ***
  st=20 rt='None'
 	cond='ir76' value=2 nst=21
-	nst=10
+	nst=24
  st=21 rt='check RTS'
 	cond='ir64' value=0 nst=22
 	nst=170
@@ -31,6 +31,11 @@
  st=23 rt='check RTS'
 	cond='ir0' value=0 nst=200
 	nst=170
+ st=24
+       rt='check SET/CLR'
+	 cond='ir75'  value=1 nst=420
+	 nst=10
+  
 
 *** Double Operand: Read source ***
  st=30 		rt='None'
@@ -164,6 +169,7 @@
 	cond='ir158'  value=6 nst=182
 	cond='ir158'  value=7 nst=156
 	cond='ir158'  value=8 nst=151
+	cond='ir158'  value=10 nst=204
  st=101 rt='unknown OP Code'
 	nst=10
 
