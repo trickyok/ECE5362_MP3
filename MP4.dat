@@ -31,8 +31,7 @@
  st=23 rt='check RTS'
 	cond='ir0' value=0 nst=200
 	nst=170
- st=24
-       rt='check SET/CLR'
+ st=24 rt='check SET/CLR'
 	 cond='ir75'  value=1 nst=420
 	 nst=10
   
@@ -328,9 +327,6 @@
 *---Addr Mode 0:Register
  st=305 rt='q->Rn'				oq wac=3
 	nst=0
-
-
-
 
 
 *** Op-Code: SC/CC ***
